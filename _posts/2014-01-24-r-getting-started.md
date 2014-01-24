@@ -1,6 +1,6 @@
 ---
 layout: post
-title: R: Getting Started
+title: "R: Getting Started"
 categories:
 - blog
 ---
