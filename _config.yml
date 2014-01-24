@@ -1,0 +1,38 @@
+# General Jekyll Config
+pygments: true
+url: http://renkun-ken.github.io
+lsi: false
+exclude: [LICENSE, CNAME, README.md, .gitignore]
+safe: true
+
+# Theme customization - please change from the defaults!
+theme:
+  # Color for top bar, links, etc
+  highlight_color: '#3498db'
+
+  # Profile links on the left sidebar, leave blank to ignore
+  social:
+    github: renkun-ken
+    #bitbucket: philipj
+    #hacker_news: swanson
+    stackexchange: 3473007
+    stackoverflow: 2906900
+    twitter: renkun_ken
+    facebook: renkun.ken
+    #tumblr: animalygifs
+    linkedin: 108147960
+    #gplus: 111105804545243552282
+
+  # "Hi, I'm _______"
+  name: Kun Ren
+  email: renkun@outlook.com
+  tagline: "an enthusiast for data science"
+
+  # Google Analytics key, leave blank to ignore
+  google_analytics_key: UA-47159422-1
+
+  # Toggle "Postings are my own" disclaimer in footer
+  show_disclaimer: true
+
+  # MathJax support
+  mathjax: true
