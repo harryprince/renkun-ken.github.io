@@ -61,7 +61,9 @@ Here is my additional settings I find useful to make a good writing environment:
 }
 {% endhighlight %}
 
-Here I take out the lines of theme and color scheme.
+Please note that I use [Source Code Pro](http://www.google.com/fonts/specimen/Source+Code+Pro) font, any you may visit [here](http://sourceforge.net/projects/sourcecodepro.adobe/files/), choose the latest version of `FontsOnly` package to download, and extract the OTF or TTF fonts to the `Fonts` directory.
+
+In addition, I take out the lines of theme and color scheme in the settings.
 
 # Useful Packages
 
