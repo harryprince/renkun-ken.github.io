@@ -78,3 +78,4 @@ If you intensively use Sublime Text for coding editing, you will probably find t
 - [SublimeCodeIntel](https://sublime.wbond.net/packages/SublimeCodeIntel): Full-featured code intelligence and smart auto-complete engine.
 - [SublimeREPL](https://sublime.wbond.net/packages/SublimeREPL): Run an interpreter inside Sublime Text (Clojure, CoffeeScript, F#, Groovy, Haskell, Lua, MozRepl, NodeJS, Python + virtualenv, R, Ruby, Scala, ...)
 
+With these packages, you will be able to make Sublime Text more of an IDE than a simple text editor. If you need more functionality, just search the repository. Enjoy it!
