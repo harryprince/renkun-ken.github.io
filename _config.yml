@@ -36,3 +36,6 @@ theme:
 
   # MathJax support
   mathjax: true
+
+  # Disqus support
+  disqus: renkun-ken
