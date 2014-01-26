@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Useful packages for Sublime Text"
+title: Useful packages for Sublime Text
 categories:
 - blog
 - tool
