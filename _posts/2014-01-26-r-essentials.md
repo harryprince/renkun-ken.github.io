@@ -8,7 +8,7 @@ categories:
 
 It is quite easy to get started with R. You only need to download R from the [ official website ](http://www.r-project.org/), and install it. 
 
-I suggest that you install both 32-bit and 64-bit versions for greater compatibility if you are running on a 64-bit operating system. For typical statistical programming, if your dataset is not huge, it does not matter which one you run; if you try to process a giant dataset (e.g. more than 2GB), you probably need to run a 64-bit version since it supports numeric vector that contains up to $(2^64-1)$ entries while the 32-bit version only supports $(2^32-1)$ entries. 
+I suggest that you install both 32-bit and 64-bit versions for greater compatibility if you are running on a 64-bit operating system. For typical statistical programming, if your dataset is not huge, it does not matter which one you run; if you try to process a giant dataset (e.g. more than 2GB), you probably need to run a 64-bit version since it supports numeric vector that contains up to $(2^{64}-1)$ entries while the 32-bit version only supports $(2^{32}-1)$ entries. 
 
 For ordinary purposes like learning statistics or analyzing simple dataset, we probably won't get close to the upper limit of a vector. For some other research, however, like quantitative trading, we often need to deal with high frequency data, which usually occupies a big part of your hard drive, and then we need database technology to be able to deal with the data; otherwise, we cannot even load it without killing your machine.
 
