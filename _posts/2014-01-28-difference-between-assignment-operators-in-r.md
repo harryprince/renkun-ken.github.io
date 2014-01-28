@@ -86,7 +86,8 @@ lm(data <- data, formula <- z~x+y)
 
 The reason is exactly what I mentioned previously. We reassign `data` to `data` and give its value to the first argument (`formula`) of `lm` which only accepts a formula-typed value. We also try to assign `z~x+y` to a new variable `formula` and give it to the second argument (`data`) of `lm` which only accepts a data frame-typed value. Both types of the parameter we provide to `lm` are wrong, so we receive the message:
 
-```Error in as.data.frame.default(data) : 
+``` Text
+Error in as.data.frame.default(data) : 
   cannot coerce class ""formula"" to a data.frame
 ```
 
