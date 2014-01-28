@@ -8,7 +8,7 @@ categories:
 
 For R beginners, the first operator they use is probably the *assignment operator* `<-`. [Google's R Style Guide](http://google-styleguide.googlecode.com/svn/trunk/Rguide.xml) suggests that we use `<-` rather than `=` even though the equal sign is also allowed in R to do exactly the same thing when we assign a value to a variable. However, some might feel inconvenient because you need to type two characters to represent one symbol, which is different from many other programming languages.
 
-So many users ask **Why we should use `<-` as the assignment operator?**
+As a result, many users ask *Why we should use `<-` as the assignment operator?*
 
 Here I provide a simple explanation to the difference between `<-` and `=` in R.
 
@@ -86,8 +86,7 @@ lm(data <- data, formula <- z~x+y)
 
 The reason is exactly what I mentioned previously. We reassign `data` to `data` and give its value to the first argument (`formula`) of `lm` which only accepts a formula-typed value. We also try to assign `z~x+y` to a new variable `formula` and give it to the second argument (`data`) of `lm` which only accepts a data frame-typed value. Both types of the parameter we provide to `lm` are wrong, so we receive the message:
 
-```
-Error in as.data.frame.default(data) : 
+```Error in as.data.frame.default(data) : 
   cannot coerce class ""formula"" to a data.frame
 ```
 
