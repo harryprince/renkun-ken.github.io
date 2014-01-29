@@ -5,7 +5,7 @@ lsi: false
 exclude: [LICENSE, CNAME, README.md, .gitignore]
 safe: true
 
-# Theme customization - please change from the defaults!
+# Theme customization
 theme:
   # Color for top bar, links, etc
   highlight_color: '#3498db'
@@ -13,17 +13,17 @@ theme:
   # Profile links on the left sidebar, leave blank to ignore
   social:
     github: renkun-ken
-    #bitbucket: philipj
-    #hacker_news: swanson
+    #bitbucket:
+    #hacker_news:
     stackexchange: 3473007
     stackoverflow: 2906900
     twitter: renkun_ken
     facebook: renkun.ken
-    #tumblr: animalygifs
+    #tumblr:
     linkedin: kun-ren/30/275/760
     #gplus: 111105804545243552282
 
-  # "Hi, I'm _______"
+  # Personal information
   name: Kun Ren
   email: renkun@outlook.com
   tagline: "an enthusiast for data science"
