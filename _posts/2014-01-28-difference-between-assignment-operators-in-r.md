@@ -6,13 +6,13 @@ categories:
 - R
 ---
 
-For R beginners, the first operator they use is probably the *assignment operator* `<-`. [Google's R Style Guide](http://google-styleguide.googlecode.com/svn/trunk/Rguide.xml) suggests that we use `<-` rather than `=` even though the equal sign is also allowed in R to do exactly the same thing when we assign a value to a variable. However, some might feel inconvenient because you need to type two characters to represent one symbol, which is different from many other programming languages.
+For R beginners, the first operator they use is probably the *assignment operator* `<-`. [Google's R Style Guide](http://google-styleguide.googlecode.com/svn/trunk/Rguide.xml) suggests the usage of `<-` rather than `=` even though the equal sign is also allowed in R to do exactly the same thing when we assign a value to a variable. However, you might feel inconvenient because you need to type two characters to represent one symbol, which is different from many other programming languages.
 
 As a result, many users ask *Why we should use `<-` as the assignment operator?*
 
-Here I provide a simple explanation to the difference between `<-` and `=` in R.
+Here I provide a simple explanation to the subtle difference between `<-` and `=` in R.
 
-First, let's look at a simple example.
+First, let's look at an example.
 
 {% highlight R %}
 x <- rnorm(100)
@@ -34,7 +34,7 @@ y = 2*x + rnorm(100)
 lm(formula=y~x)
 {% endhighlight %}
 
-Here, we only use `=` but for two different purposes: line 1 and 2 use `=` as assignment operator and line 3 use `=` as named parameter setter.
+Here, we only use `=` but for two different purposes: in the first and second lines we use `=` as assignment operator and in the third line we use `=` as a specifier of named parameter.
 
 Now let's see what happens if we change all `=` symbols to `<-`.
 
@@ -46,7 +46,7 @@ lm(formula <- y~x)
 
 If you run this code, you will find that the output are similar. But if you inspect the environment, you will observe the difference: a new variable `formula` is defined in the environment whose value is `y~x`. So what happens?
 
-Actually, in the third line, two things happened: First, we introduce a new symbol (variable) `formula` to the environment and assign it a formula-typed value `y~x`. Then, the value of `formula` is provided to the **first paramter** of function `lm` rather than, accurately speaking, to the **parameter named formula**, although this time they mean the identical parameter of the function.
+Actually, in the third line, two things happened: First, we introduce a new symbol (variable) `formula` to the environment and assign it a formula-typed value `y~x`. Then, the value of `formula` is provided to the **first paramter** of function `lm` rather than, accurately speaking, to the **parameter named `formula`**, although this time they mean the identical parameter of the function.
 
 To test it, we conduct an experiment. This time we first prepare the data.
 
@@ -91,4 +91,6 @@ Error in as.data.frame.default(data) :
   cannot coerce class ""formula"" to a data.frame
 ```
 
-In conclusion, for better readability of R code, I suggest that we only use `<-` for assignment and `=` only for specifying named parameter.
+From the above examples and experiments, the bottom line gets clear: to reduce ambiguity, we should use either `<-` or `=` as assignment operator, and only use `=` as named-parameter specifier for functions.
+
+In conclusion, for better readability of R code, I suggest that we only use `<-` for assignment and `=` for specifying named parameters.
