@@ -6,13 +6,12 @@ categories:
 - R
 ---
 
-We often write code like this:
+For R beginners, `for` loop is an elementary flow-control device that simplifies repeatedly calling functions with different parameters. A possible block of code is like this:
 
 {% highlight R %}
 run <- function(i) {
   return((i+1)/(i^2+1))
 }
-
 for(i in 1:100) {
   run(i)
 }
@@ -128,6 +127,6 @@ Note that here we use `parallelLapply` and don't need to explicitly specify whic
 
 A tip for writing R loop in which iterations are independent with each other is to eliminate it. I rarely use `for` when `sapply` and `lapply` can finish the same task. If you use these high-order functions, it is likely that they can be easily switched to a parallel version.
 
-The reason of development is clear: First, write code with `sapply` or `lapply` to ensure the code works. Then alter these functions to their parallel version if you need a higher performance.
+As a result, a better development procedure is like this: First, write code with `sapply` or `lapply` to ensure the code works. Then alter these functions to their parallel version if you need a higher performance.
 
 This post only works for the situation where the function each node runs does not require non-elementary packages and does not refer to *outer* resources in the environment. In my later posts, I will introduce how we run functions in standalone code file over cluster nodes which may require non-elementary packages, and how we pass variables in the current environment to the environment of the cluster nodes.
