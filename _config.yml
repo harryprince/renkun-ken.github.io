@@ -13,13 +13,10 @@ theme:
   # Profile links on the left sidebar, leave blank to ignore
   social:
     github: renkun-ken
-    #bitbucket:
-    #hacker_news:
     stackexchange: 3473007
     stackoverflow: 2906900
     twitter: renkun_ken
     facebook: renkun.ken
-    #tumblr:
     linkedin: kun-ren/30/275/760
     #gplus: 111105804545243552282
   author:
