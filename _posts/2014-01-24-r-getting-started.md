@@ -6,7 +6,7 @@ categories:
 - R
 ---
 
-R rocks in both academia and industry nowadays. A rapidly increasing number of researchers choose R to be one of their productive tools for data analysis and data visualization. It is partially because the software is totally free and open-source but also because the community behind the stage who contributes to nearly 5000 packages remains growing, which results in a evolving and sustainable ecosystem.
+R rocks in both academia and industry nowadays. A rapidly increasing number of researchers choose R to be one of their productive tools for data analysis and data visualization. It is partially because the software is totally free and open-source but also because the community behind the stage who contributes to nearly 5000 packages remains growing, which results in an evolving and sustainable ecosystem.
 
 If you are a student learning statistics or econometrics, you must have heard about R. But now, I strongly recommend that you learn some R programming and apply it in your work. Otherwise, you won't be able to get access to the world where specialists speak a language you do not understand and a big part of knowledge is written in a language you cannot read.
 
