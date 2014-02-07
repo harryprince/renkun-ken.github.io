@@ -13,13 +13,18 @@ However, if we want to do something more, together, in one statement, the R code
 `sqldf` package provides an interface between SQLite memory database and R through SQL. You even don't need to know database stuff because everything happens in the back-stage. Here you only need to know some basic SQL to begin with. For example, if we want to finish all the tasks in the first paragraph in one SQL statement, here it is:
 
 {% highlight sql %}
-SELECT *, price * volume AS totalValue FROM df WHERE price >= (SELECT AVG(price) FROM df) LIMIT 100
+SELECT *, price * volume AS totalValue 
+FROM df 
+WHERE price >= (SELECT AVG(price) FROM df) 
+LIMIT 100
 {% endhighlight %}
 
 In R, assuming `df` is the data frame we want to operate with in the current environment, we only need to call this to finish the tasks altogether:
 
 {% highlight R %}
-sqldf("SELECT *, price * volume AS totalValue FROM df WHERE price >= (SELECT AVG(price) FROM df) LIMIT 100")
+sqldf("SELECT *, price * volume AS totalValue 
+        FROM df WHERE price >= (SELECT AVG(price) FROM df)
+        LIMIT 100")
 {% endhighlight %}
 
 If you are familiar with SQL, the statement above is almost as friendly as plain English.
