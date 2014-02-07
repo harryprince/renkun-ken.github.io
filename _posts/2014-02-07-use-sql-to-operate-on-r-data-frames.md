@@ -16,7 +16,7 @@ However, if we want to do something more, together, in one statement, the R code
 SELECT *, price * volume AS totalValue FROM df WHERE price >= (SELECT AVG(price) FROM df) LIMIT 100
 {% endhighlight %}
 
-In R, assuming `df` is the data frame we want to operate with in the current environment, we only need to call to finish the tasks altogether:
+In R, assuming `df` is the data frame we want to operate with in the current environment, we only need to call this to finish the tasks altogether:
 
 {% highlight R %}
 sqldf("SELECT *, price * volume AS totalValue FROM df WHERE price >= (SELECT AVG(price) FROM df) LIMIT 100")
@@ -24,4 +24,4 @@ sqldf("SELECT *, price * volume AS totalValue FROM df WHERE price >= (SELECT AVG
 
 If you are familiar with SQL, the statement above is almost as friendly as plain English.
 
-[`sqldf`](http://cran.r-project.org/web/packages/sqldf/) is hosted by [Google Code](https://code.google.com/p/sqldf/). Its official website offers a comprehensive tutorial and FAQ on it.
+`sqldf` is listed on [CRAN](http://cran.r-project.org/web/packages/sqldf/) and is hosted by [Google Code](https://code.google.com/p/sqldf/). Its official website offers a comprehensive tutorial and FAQ on it.
