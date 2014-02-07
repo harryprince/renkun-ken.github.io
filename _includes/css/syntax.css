@@ -66,3 +66,6 @@
 .highlight .vi { color: teal; }
 .highlight .il { color: #009999; }
 .highlight .gc { color: #999; background-color: #EAF2F5; }
+
+pre { white-space: pre; overflow: auto; }
+code, pre { font-family: Monaco,Menlo,Consolas,"Courier New",monospace; }
