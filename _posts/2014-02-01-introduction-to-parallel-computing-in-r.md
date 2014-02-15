@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Introduction to Parallel Computing in R
+title: Introduction to parallel computing in R
 categories:
 - blog
 - R
