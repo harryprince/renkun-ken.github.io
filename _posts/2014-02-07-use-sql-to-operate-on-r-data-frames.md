@@ -68,7 +68,7 @@ The power of SQL is not yet very clear, unless we combine them together. For exa
 {% highlight sql %}
 SELECT AVG(price), AVG(totalValue) 
 FROM 
-    (SELECT *, price *volume AS totalValue 
+    (SELECT *, price * volume AS totalValue 
     FROM df 
     ORDER BY totalValue DESC 
     LIMIT 20)
