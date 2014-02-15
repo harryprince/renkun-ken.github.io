@@ -12,13 +12,13 @@ To test a random thought that needs some statistical evidence, you only need to 
 
 However, if you are working on a R project that has the potential to grow in size and complexity, you had better consider a principle while creating the first prototype. The principle is **Make different components inpedendent**.
 
-For a typical project that involves statistical computing, writing code is actually designing a machine. Although it's not a physical machine full of gears and wheels, it runs mechanically according to the logic we specified in the code. For a machine, we usually don't want it to work only once. Rather, we often want to rerun the machine with different sets of input and see what output it produces. To make it easier, it is better to identify three elementary components in your project: Logic, data, and input.
+For a typical project that involves statistical computing, writing code is actually designing a machine. Although it's not a physical machine full of gears and wheels, it runs mechanically according to the logic we specify in the code. For a machine, we usually don't want it to work only once. Rather, we often want to rerun the machine with different sets of input and see what output it produces. To make it easier, it is better to identify three elementary components in your project: Logic, data, and input.
 
 **Logic** is how the program runs and is specified in the code we write. To compare, the logic of a machine is the way different gears and wheels interact with each other. Similarly, in the program, the logic is the way different objects interact with each other. Just like road and fuel are not built-in components of a car, data and input should not be included by the logic. Actually, a *robust* programming logic is just how **data** and **input** should interact with each other, and nothing more.
 
-If this principle is implemented, that is, logic, data, and input are separated, the program will serve as a much more handy machine. For example, if you want to run the program with a different set of inputs, you only need to create a new profile of inputs and run it without changing the internal logic and external data, just like pressing some different buttons on the board and excute a microwave without reconnect the wires and cables inside. 
+If this principle is implemented, that is, logic, data, and input are separated, the program will serve as a much more handy machine. For example, if you want to run the program with a different set of inputs, you only need to create a new profile of inputs and run it without changing the internal logic and external data, just like pressing some different buttons on the board and excuting a microwave without reconnecting the wires and cables inside. 
 
-If the logic in independent from the data, it will be very convenient to run over another data set with the same structure. For example, if your code refers to some special column names in a specific data set, the code won't be so robust that the data set can easily be altered to another one. Here we should specify the column names somewhere in the input, and refer to a unified version of column names in the logic. Then the code becomes much more robust.
+If the logic is independent from the data, it will be very convenient to run over another data set with the same structure. For example, if your code refers to some special column names in a specific data set, the code won't be so robust that the data set can easily be altered to another one. Here we should specify the column names somewhere in the input, and refer to a unified version of column names in the logic. Then the code becomes much more robust.
 
 To make it easier to implement this principle, I recommend using [JSON](http://www.json.org/) to encode inputs. JSON is the abbreviation for JavaScript Object Notation. But here it has nothing to do with JavaScript. We only use its syntax for easy specification of a set of inputs.
 
@@ -70,7 +70,7 @@ colnames(df) <- profile$columns
 
 Here we call `fromJSON` function to load the settings, and call `lapply` to generate random numbers according to the specification in a robust way. The code above does not involve any piece of settings and data so that we are allowed to rerun the machine by different settings without having to change any bit of code.
 
-In some situations, our program has more than one profiles. These profiles can be duplicates to each other except for a subset of settings. But if we want to change a field in each profile, it can be time-consuming. A decent way is to use profile overriding. To proceed, we first create a default profile (`default.json`)that defines the template.
+In some situations, our program has more than one profiles. These profiles can be duplicates to each other except for a subset of settings. But if we want to change a field in each profile, it can be time-consuming. A decent way is to adopt **profile overriding**. To proceed, we first create a default profile (`default.json`) that defines the template.
 
 {% highlight json %}
 {
