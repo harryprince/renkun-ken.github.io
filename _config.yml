@@ -41,5 +41,6 @@ theme:
   # Disqus site-id
   disqus: renkun-ken
 
-  # highlight.js support
-  highlightjs: true
+  # highlight.js theme
+  # false to disable
+  highlightjs: googlecode
