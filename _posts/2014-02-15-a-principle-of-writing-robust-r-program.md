@@ -24,7 +24,7 @@ To make it easier to implement this principle, I recommend using [JSON](http://w
 
 For example, a simple set of JSON inputs can be written like
 
-{% highlight json %}
+<pre><code>
 {
     "name": "test1",
     "n": 20,
@@ -32,7 +32,7 @@ For example, a simple set of JSON inputs can be written like
     "range": [0.2, 0.8],
     "columns": ["a","b","c"]
 }
-{% endhighlight %}
+</code></pre>
 
 The above text defines 5 fields: `name` as a string, `n` as an integer, `random` as a string vector, `range` as a float vector, and `columns` as another string vector.
 
@@ -42,7 +42,7 @@ Here is a small example that illustrates how handy it is to operate a machine wh
 
 First, we write a simple JSON file (`test1.json`) to encode the default settings.
 
-{% highlight json %}
+<pre><code>
 {
     "name": "test1",
     "n": 20,
@@ -50,11 +50,11 @@ First, we write a simple JSON file (`test1.json`) to encode the default settings
     "range": [0.2, 0.8],
     "columns": ["a","b","c"]
 }
-{% endhighlight %}
+</code></pre>
 
 Then we write the R code as our logic to implement the idea.
 
-{% highlight R %}
+<pre><code>
 require(jsonlite)
 profile <- fromJSON("test1.json")
 data <- lapply(profile$random,function(fun) {
@@ -66,13 +66,13 @@ data <- lapply(profile$random,function(fun) {
 })
 df <- data.frame(do.call(cbind,data))
 colnames(df) <- profile$columns
-{% endhighlight %}
+</code></pre>
 
 Here we call `fromJSON` function to load the settings, and call `lapply` to generate random numbers according to the specification in a robust way. The code above does not involve any piece of settings and data so that we are allowed to rerun the machine by different settings without having to change any bit of code.
 
 In some situations, our program has more than one profiles. These profiles can be duplicates to each other except for a subset of settings. But if we want to change a field in each profile, it can be time-consuming. A decent way is to adopt **profile overriding**. To proceed, we first create a default profile (`default.json`) that defines the template.
 
-{% highlight json %}
+<pre><code>
 {
     "name": "default",
     "n": 20,
@@ -80,21 +80,21 @@ In some situations, our program has more than one profiles. These profiles can b
     "range": [0.2, 0.8],
     "columns": ["a","b","c"]
 }
-{% endhighlight %}
+</code></pre>
 
 Then we create another overriding profile (`test2.json`) that only contains updates to the default one. For example:
 
-{% highlight json %}
+<pre><code>
 {
     "name": "test2",
     "n": 50,
     "range": [0.4, 0.6]
 }
-{% endhighlight %}
+</code></pre>
 
 To make it work, we use `modifyList` function to update the list created from `default.json` by that from `test2.json`.
 
-{% highlight R %}
+<pre><code>
 require(jsonlite)
 profile <- modifyList(fromJSON("default.json"),
                       fromJSON("test2.json"))
@@ -107,7 +107,7 @@ data <- lapply(profile$random,function(fun) {
 })
 df <- data.frame(do.call(cbind,data))
 colnames(df) <- profile$columns
-{% endhighlight %}
+</code></pre>
 
 `modifyList` is a built-in function in R. It updates a list by merging updated fields and introducing new fields in the list and sublists recursively.
 

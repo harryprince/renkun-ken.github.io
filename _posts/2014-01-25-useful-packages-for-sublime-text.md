@@ -35,7 +35,7 @@ From my personal experience, a good appearance of code editor really improves th
 
 Here is my additional settings I find useful to make a good writing environment:
 
-{% highlight json %}
+<pre><code>
 {
     "caret_style": "solid",
     "font_face": "Source Code Pro",
@@ -59,7 +59,7 @@ Here is my additional settings I find useful to make a good writing environment:
     "word_wrap": true,
     "wrap_width": 80
 }
-{% endhighlight %}
+</code></pre>
 
 Please note that I use [Source Code Pro](http://www.google.com/fonts/specimen/Source+Code+Pro) font, any you may visit [here](http://sourceforge.net/projects/sourcecodepro.adobe/files/), choose the latest version of `FontsOnly` package to download, and extract the OTF or TTF fonts to the `Fonts` directory.
 

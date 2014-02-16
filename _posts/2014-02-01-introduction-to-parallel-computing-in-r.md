@@ -8,22 +8,22 @@ categories:
 
 For R beginners, `for` loop is an elementary flow-control device that simplifies repeatedly calling functions with different parameters. A possible block of code is like this:
 
-{% highlight R %}
+<pre><code>
 run <- function(i) {
   return((i+1)/(i^2+1))
 }
 for(i in 1:100) {
   run(i)
 }
-{% endhighlight %}
+</code></pre>
 
 In this code, we first define a function that calculates something, and then run the function from `i = 1` to `i = 100`. This can be altered to a Monte Carlo simulation in which we estimate the distribution of a statistic or to calculate the theoretical price of an European call option in a binomial tree.
 
 The code above can be reduced by high-level aggregate function `lapply` or `sapply`, for example, we can eliminate the `for` loop by `lapply`:
 
-{% highlight R %}
+<pre><code>
 lapply(1:100,run)
-{% endhighlight %}
+</code></pre>
 
 The code will return a list of values, each of which equals `run(i)` where `i` is iteratively chosen from the numeric vector `1:100`. The code is made simpler, but its internal mechanism does not change at all.
 
@@ -45,55 +45,55 @@ In this article, I only introduce `parallel` package and `parallelMap` package.
 
 `parallel` package supports local multi-core parallelism. If you don't have it installed, you may call
 
-{% highlight R %}
+<pre><code>
 install.packages("parallel")
-{% endhighlight %}
+</code></pre>
 
 The back-end mechanism is quite transparent: first, we set up a local cluster over multiple cores in CPU, which run in parallel and are able to process data simultaneously. Then we send commands to all cluster nodes (cores) to run a task specified by a function. Below is a minimal example:
 
-{% highlight R %}
+<pre><code>
 library(parallel)
 cl <- makeCluster(detectCores())
 result <- clusterApply(cl,1:100,run)
 values <- do.call(c,result)
 stopCluster(cl)
-{% endhighlight %}
+</code></pre>
 
 First, we load `parallel` library. Then we create a cluster of several nodes. `detectCores()` will return the number of logical processors in your machine. Next we call `clusterApply` to run parallel computing over cluster `cl` we just created, and through the vector `1:100` each node calls `run` function defined above. The computation will yield a list of returned values of `run`. To aggregate these numbers in `list`, we use `do.call` to pass the list as parameters to the function `c` to combine all these values into a numeric vector. Finally, we stop the cluster and clear the resources.
 
 If our task returns a vector containing more than one values, we still do not have to change much of our code above. For example, if `run` function return a named vector of `a`, `b`, and `c` each time:
 
-{% highlight R %}
+<pre><code>
 run <- function(i) {
   return(c(a=i,b=i+1,c=i*2))
 }
-{% endhighlight %}
+</code></pre>
 
 We don't need to change anything but how we aggregate the results. Here it is:
 
-{% highlight R %}
+<pre><code>
 library(parallel)
 cl <- makeCluster(detectCores())
 result <- clusterApply(cl,1:100,run)
 values <- do.call(rbind,result)
 stopCluster(cl)
-{% endhighlight %}
+</code></pre>
 
 We only change `c` to `rbind` in `do.call` function so that the `list` of returned named vectors are combined row by row, which finally makes a matrix with column names `a`, `b`, and `c`. If you want to get a data frame in the final result, there are two ways to do it.
 
 One way is to call `data.frame` to convert the matrix to data frame after we have already obtained the matrix.
 
-{% highlight R %}
+<pre><code>
 values.df <- data.frame(values)
-{% endhighlight %}
+</code></pre>
 
 The other way is to change `run` function so that it directly returns a data frame with a single row.
 
-{% highlight R %}
+<pre><code>
 run <- function(i) {
   return(data.frame(a=i,b=i+1,c=i*2))
 }
-{% endhighlight %}
+</code></pre>
 
 Here we don't need the change anything in the rest of the code.
 
@@ -101,25 +101,25 @@ Here we don't need the change anything in the rest of the code.
 
 The functionality of `parallelMap` package is quite similar with that of `parallel` package except that we don't need to explicitly operate the cluster object. If you don't have this package installed, run the code:
 
-{% highlight R %}
+<pre><code>
 install.packages("parallelMap")
-{% endhighlight %}
+</code></pre>
 
 To initialize a cluster, we run the following code:
 
-{% highlight R %}
+<pre><code>
 library(parallelMap)
 parallelStart("socket",cpus=4)
-{% endhighlight %}
+</code></pre>
 
 Then the environment has an implicitly defined local cluster of 4 CPUs, each node of which communicate with each other by socket. Here you don't have to know anything about *socket*. We have just created a similar cluster as we did with `parallel` package. But this time, we don't need to manage the cluster object by ourselves. The package will automatically manage it.
 
 To run the same task we did before, we run the code:
 
-{% highlight R %}
+<pre><code>
 result <- parallelLapply(1:100,run)
 values <- do.call(rbind,result)
-{% endhighlight %}
+</code></pre>
 
 Note that here we use `parallelLapply` and don't need to explicitly specify which `cluster` we use since on a local machine we usually have only one cluster. The code looks much simpler. In addition, the way to produce data frames perfectly applies here too.
 
