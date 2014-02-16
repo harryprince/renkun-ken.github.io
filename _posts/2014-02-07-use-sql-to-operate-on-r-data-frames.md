@@ -57,11 +57,16 @@ Sorting can also be simple. Here we use `ORDER BY` to sort the records by `total
 SELECT *, price * volume AS totalValue FROM df ORDER BY totalValue DESC
 ```
 
-Subsetting is also intuitive. Here we use `LIMIT` to select only the top 30 records with the highest `totalValue`.
+The code for subsetting a table is also intuitive. Here we use `LIMIT` to select only the top 30 records with the highest `totalValue`.
 
 ```sql
-SELECT *, price * volume AS totalValue FROM df ORDER BY totalValue DESC LIMIT 30
+SELECT *, price * volume AS totalValue 
+FROM df 
+ORDER BY totalValue DESC 
+LIMIT 30
 ```
+
+Note that we break the lines to make the statement clear. It works perfectly in the same way as a statement without line breaks.
 
 The power of SQL is not yet very clear, unless we combine them together. For example, if we want to finish all the tasks in the first paragraph in one SQL statement, here it is:
 
