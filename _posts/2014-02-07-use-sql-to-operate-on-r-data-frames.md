@@ -12,7 +12,7 @@ R provides built-in functions for data frame manipulation. Suppose `df` is the d
 
 However, if we want to do something more, together, the R code will be totally a mess. Say we want to sort `df` by a new column `totalValue`, which equals `price` times `volume`, and then average the `price` and `totalValue` columns for the top 20 records. The R code, if written in several lines, can be this:
 
-```R
+```r
 df$totalValue <- df$price * df$volume
 df.sorted <- df[order(df$totalValue,decreasing=T),]
 df.subset <- df.sorted[1:20,c("price","totalValue")]
