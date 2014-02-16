@@ -5,7 +5,3 @@ categories:
 - blog
 - fsharp
 ---
-
-<pre><code>
-
-</code></pre>

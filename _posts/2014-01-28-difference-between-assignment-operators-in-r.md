@@ -14,11 +14,9 @@ Here I provide a simple explanation to the subtle difference between `<-` and `=
 
 First, let's look at an example.
 
-<pre><code>
-x <- rnorm(100)
-y <- 2*x + rnorm(100)
-lm(formula=y~x)
-</code></pre>
+    x <- rnorm(100)
+    y <- 2*x + rnorm(100)
+    lm(formula=y~x)
 
 The above code uses both `<-` and `=` symbols, but the work they do are different. `<-` in the first two lines are used as **assignment operator** while `=` in the third line does not serves as assignment operator but an operator that specifies a named parameter `formula` for `lm` function.
 
@@ -28,21 +26,17 @@ We know that `<-` and `=` are perfectly equivalent when they are used as assignm
 
 Therefore, the above code is equivalent to the following code:
 
-<pre><code>
-x = rnorm(100)
-y = 2*x + rnorm(100)
-lm(formula=y~x)
-</code></pre>
+    x = rnorm(100)
+    y = 2*x + rnorm(100)
+    lm(formula=y~x)
 
 Here, we only use `=` but for two different purposes: in the first and second lines we use `=` as assignment operator and in the third line we use `=` as a specifier of named parameter.
 
 Now let's see what happens if we change all `=` symbols to `<-`.
 
-<pre><code>
-x <- rnorm(100)
-y <- 2*x + rnorm(100)
-lm(formula <- y~x)
-</code></pre>
+    x <- rnorm(100)
+    y <- 2*x + rnorm(100)
+    lm(formula <- y~x)
 
 If you run this code, you will find that the output are similar. But if you inspect the environment, you will observe the difference: a new variable `formula` is defined in the environment whose value is `y~x`. So what happens?
 
@@ -50,46 +44,34 @@ Actually, in the third line, two things happened: First, we introduce a new symb
 
 To test it, we conduct an experiment. This time we first prepare the data.
 
-<pre><code>
-x <- rnorm(100)
-y <- 2*x+rnorm(100)
-z <- 3*x+rnorm(100)
-data <- data.frame(z,x,y)
-rm(x,y,z)
-</code></pre>
+    x <- rnorm(100)
+    y <- 2*x+rnorm(100)
+    z <- 3*x+rnorm(100)
+    data <- data.frame(z,x,y)
+    rm(x,y,z)
 
 Basically, we just did similar things as before except that we store all vectors in a data frame and clear those numeric vectors from the environment. We know that `lm` function accepts a data frame as the data source when a formula is specified.
 
 Standard usage:
 
-<pre><code>
-lm(formula=z~x+y,data=data)
-</code></pre>
+    lm(formula=z~x+y,data=data)
 
 Working alternative where two named parameters are reordered:
 
-<pre><code>
-lm(data=data,formula=z~x+y)
-</code></pre>
+    lm(data=data,formula=z~x+y)
 
 Working alternative with side effects that two new variable are defined:
 
-<pre><code>
-lm(formula <- z~x+y, data <- data)
-</code></pre>
+    lm(formula <- z~x+y, data <- data)
 
 Nonworking example:
 
-<pre><code>
-lm(data <- data, formula <- z~x+y)
-</code></pre>
+    lm(data <- data, formula <- z~x+y)
 
 The reason is exactly what I mentioned previously. We reassign `data` to `data` and give its value to the first argument (`formula`) of `lm` which only accepts a formula-typed value. We also try to assign `z~x+y` to a new variable `formula` and give it to the second argument (`data`) of `lm` which only accepts a data frame-typed value. Both types of the parameter we provide to `lm` are wrong, so we receive the message:
 
-<pre><code>
-Error in as.data.frame.default(data) : 
-  cannot coerce class ""formula"" to a data.frame
-</code></pre>
+    Error in as.data.frame.default(data) : 
+      cannot coerce class ""formula"" to a data.frame
 
 From the above examples and experiments, the bottom line gets clear: to reduce ambiguity, we should use either `<-` or `=` as assignment operator, and only use `=` as named-parameter specifier for functions.
 
