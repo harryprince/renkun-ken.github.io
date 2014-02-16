@@ -1,5 +1,5 @@
 # General Jekyll Config
-#pygments: false
+pygments: false
 markdown: redcarpet
 url: http://renkun.me
 lsi: false
