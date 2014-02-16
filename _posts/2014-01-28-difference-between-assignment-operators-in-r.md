@@ -14,7 +14,7 @@ Here I provide a simple explanation to the subtle difference between `<-` and `=
 
 First, let's look at an example.
 
-``` r
+```r
 x <- rnorm(100)
 y <- 2*x + rnorm(100)
 lm(formula=y~x)
