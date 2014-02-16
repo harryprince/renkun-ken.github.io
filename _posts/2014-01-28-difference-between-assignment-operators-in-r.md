@@ -14,9 +14,11 @@ Here I provide a simple explanation to the subtle difference between `<-` and `=
 
 First, let's look at an example.
 
-    x <- rnorm(100)
-    y <- 2*x + rnorm(100)
-    lm(formula=y~x)
+```r
+x <- rnorm(100)
+y <- 2*x + rnorm(100)
+lm(formula=y~x)
+```
 
 The above code uses both `<-` and `=` symbols, but the work they do are different. `<-` in the first two lines are used as **assignment operator** while `=` in the third line does not serves as assignment operator but an operator that specifies a named parameter `formula` for `lm` function.
 
