@@ -1,5 +1,6 @@
 # General Jekyll Config
-pygments: false
+#pygments: false
+markdown: redcarpet
 url: http://renkun.me
 lsi: false
 exclude: [LICENSE, CNAME, README.md, .gitignore]
@@ -39,4 +40,4 @@ theme:
   disqus: renkun-ken
 
   # highlight.js support
-  highlightjs: true
+  highlightjs: false
