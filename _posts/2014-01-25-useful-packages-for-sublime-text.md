@@ -35,29 +35,31 @@ From my personal experience, a good appearance of code editor really improves th
 
 Here is my additional settings I find useful to make a good writing environment:
 
-    {
-        "caret_style": "solid",
-        "font_face": "Source Code Pro",
-        "font_options":
-        [
-            "subpixel_antialias"
-        ],
-        "font_size": 14,
-        "highlight_line": true,
-        "line_padding_bottom": 0,
-        "line_padding_top": 0,
-        "rulers":
-        [
-            85,
-            120
-        ],
-        "tab_size": 4,
-        "translate_tabs_to_spaces": true,
-        "trim_trailing_white_space_on_save": true,
-        "wide_caret": true,
-        "word_wrap": true,
-        "wrap_width": 80
-    }
+```json
+{
+    "caret_style": "solid",
+    "font_face": "Source Code Pro",
+    "font_options":
+    [
+        "subpixel_antialias"
+    ],
+    "font_size": 14,
+    "highlight_line": true,
+    "line_padding_bottom": 0,
+    "line_padding_top": 0,
+    "rulers":
+    [
+        85,
+        120
+    ],
+    "tab_size": 4,
+    "translate_tabs_to_spaces": true,
+    "trim_trailing_white_space_on_save": true,
+    "wide_caret": true,
+    "word_wrap": true,
+    "wrap_width": 80
+}
+```
 
 Please note that I use [Source Code Pro](http://www.google.com/fonts/specimen/Source+Code+Pro) font, any you may visit [here](http://sourceforge.net/projects/sourcecodepro.adobe/files/), choose the latest version of `FontsOnly` package to download, and extract the OTF or TTF fonts to the `Fonts` directory.
 

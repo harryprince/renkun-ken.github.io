@@ -12,10 +12,12 @@ R provides built-in functions for data frame manipulation. Suppose `df` is the d
 
 However, if we want to do something more, together, the R code will be totally a mess. Say we want to sort `df` by a new column `totalValue`, which equals `price` times `volume`, and then average the `price` and `totalValue` columns for the top 20 records. The R code, if written in several lines, can be this:
 
-    df$totalValue <- df$price * df$volume
-    df.sorted <- df[order(df$totalValue,decreasing=T),]
-    df.subset <- df.sorted[1:20,c("price","totalValue")]
-    apply(df.subset,2,mean)
+```R
+df$totalValue <- df$price * df$volume
+df.sorted <- df[order(df$totalValue,decreasing=T),]
+df.subset <- df.sorted[1:20,c("price","totalValue")]
+apply(df.subset,2,mean)
+```
 
 The above code introduces several intermediary variables. If we want to do more with the built-in functions, the code will quickly be unreadable.
 
@@ -25,48 +27,64 @@ In the realm of database, people already have a decent solution to regular data 
 
 For example, if you need to select `price` and `volume` columns, the SQL statement should be:
 
-    SELECT price, volume FROM df
+```sql
+SELECT price, volume FROM df
+```
 
 The statement looks very much like an English sentence. It's true, and it is exactly one of the purposes for which SQL was designed. In R, `sqldf` allows us to directly query `df` by calling `sqldf()` function:
 
-    sqldf("SELECT price, volume FROM df")
+```r
+sqldf("SELECT price, volume FROM df")
+```
 
 To introduce a new colume `totalValue`, the SQL statement should be:
 
-    SELECT *, price * volume AS totalValue FROM df
+```sql
+SELECT *, price * volume AS totalValue FROM df
+```
 
 In fact, SQL keywords (e.g. `SELECT`, `AS`, `FROM`) are not case sensitive. You can write lower capital counterparts instead. However, R variable names are case sensitive, so you need to be careful with the cases of data frame columns. 
 
 Filtering can be very easy too. Here we use `WHERE` to select records where `totalValue` is no less than 3000.
 
-    SELECT *, price * volume AS totalValue FROM df WHERE totalValue >= 3000
+```sql
+SELECT *, price * volume AS totalValue FROM df WHERE totalValue >= 3000
+```
 
 Sorting can also be simple. Here we use `ORDER BY` to sort the records by `totalValue` in a descending way.
 
-    SELECT *, price * volume AS totalValue FROM df ORDER BY totalValue DESC
+```sql
+SELECT *, price * volume AS totalValue FROM df ORDER BY totalValue DESC
+```
 
 Subsetting is also intuitive. Here we use `LIMIT` to select only the top 30 records with the highest `totalValue`.
 
-    SELECT *, price * volume AS totalValue FROM df ORDER BY totalValue DESC LIMIT 30
+```sql
+SELECT *, price * volume AS totalValue FROM df ORDER BY totalValue DESC LIMIT 30
+```
 
 The power of SQL is not yet very clear, unless we combine them together. For example, if we want to finish all the tasks in the first paragraph in one SQL statement, here it is:
 
-    SELECT AVG(price), AVG(totalValue) 
-    FROM 
-        (SELECT *, price * volume AS totalValue 
-        FROM df 
-        ORDER BY totalValue DESC 
-        LIMIT 20)
+```sql
+SELECT AVG(price), AVG(totalValue) 
+FROM 
+    (SELECT *, price * volume AS totalValue 
+    FROM df 
+    ORDER BY totalValue DESC 
+    LIMIT 20)
+```
 
 Here we embed a SQL statement inside another.
 
 Another example is to select the top 100 records ordered by `totalValue` in descending way where their prices are no less than the average price.
 
-    SELECT *, price * volume AS totalValue 
-    FROM df 
-    WHERE price >= (SELECT AVG(price) FROM df)
-    ORDER BY totalValue DESC
-    LIMIT 100
+```sql
+SELECT *, price * volume AS totalValue 
+FROM df 
+WHERE price >= (SELECT AVG(price) FROM df)
+ORDER BY totalValue DESC
+LIMIT 100
+```
 
 If you are familiar with SQL, the statement above is almost as friendly as plain English, and it does not matter whether we write it in one line or in several lines. Here we separate the different clauses in the statement for greater readability.
 

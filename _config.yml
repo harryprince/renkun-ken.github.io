@@ -1,6 +1,6 @@
 # General Jekyll Config
 #pygments: false
-#markdown: redcarpet
+markdown: redcarpet
 url: http://renkun.me
 lsi: false
 exclude: [LICENSE, CNAME, README.md, .gitignore]
