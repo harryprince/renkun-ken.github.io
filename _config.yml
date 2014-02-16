@@ -43,4 +43,4 @@ theme:
 
   # highlight.js theme
   # false to disable
-  highlightjs: googlecode
+  highlightjs: vs
