@@ -40,4 +40,4 @@ theme:
   disqus: renkun-ken
 
   # highlight.js support
-  highlightjs: false
+  highlightjs: true
