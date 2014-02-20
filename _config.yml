@@ -36,7 +36,7 @@ theme:
   show_disclaimer: true
 
   # MathJax support
-  mathjax: true
+  mathjax: 2.3
 
   # Disqus site-id
   disqus: renkun-ken
