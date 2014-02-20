@@ -159,14 +159,15 @@ However, there are situations where expected pattern does not appear at all. The
 
 Here I list some patterns that match `Text1` and `Text2` but do not match `Unmatched`.
 
-| Pattern      | Text1 | Text2 | Unmatched |
-|--------------|-------|-------|-----------|
-| \d\d\w       | 23m   | 56k   | a1p       |
-| \d+\w        | 1t    | 234g  | m         |
-| \w\s*\w      | mv    | m v   | 5_m       |
-| \d-\d-\d     | 1-2-3 | 2-3-5 | 1-2-a     |
-| \w+:\d+      | mm:12 | sd:3  | 1:a       |
-| [0-9]*[a-z]+ | pq    | 12pp  | x12       |
+```
+Pattern       Text1  Text2  Unmatched 
+\d\d\w        23m    56k    a1p       
+\d+\w         1t     234g   m         
+\w\s*\w       mv     m v    5_m       
+\d-\d-\d      1-2-3  2-3-5  1-2-a     
+\w+:\d+       mm:12  sd:3   1:a       
+[0-9]*[a-z]+  pq     12pp   x12       
+```
 
 If you want to learn more specific examples and the full set of identifiers, [this website](http://www.regular-expressions.info/) will help.
 
