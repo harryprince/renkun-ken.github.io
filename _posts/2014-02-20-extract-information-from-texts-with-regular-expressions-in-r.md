@@ -14,7 +14,7 @@ However, not all data files are well organized. Although dealing with poorly org
 
 For example, if you need to analyze a raw data (`messages.txt`) organized in a *CSV-like* format as pasted below, you had better be careful when applying `read.csv()`.
 
-```
+```no-highlight
 2014-02-01,09:20:25,James,Ken,Hey, Ken!
 2014-02-01,09:20:29,Ken,James,Hey, how are you?
 2014-02-01,09:20:41,James,Ken, I'm ok, what about you?
@@ -24,7 +24,7 @@ For example, if you need to analyze a raw data (`messages.txt`) organized in a *
 
 Suppose you want to import this file as a data frame like this:
 
-```
+```no-highlight
         Date     Time Sender Receiver                 Message
 1 2014-02-01 09:20:25  James      Ken               Hey, Ken!
 2 2014-02-01 09:20:29    Ken    James       Hey, how are you?
@@ -35,7 +35,7 @@ Suppose you want to import this file as a data frame like this:
 
 However, if you blindly call `read.csv()` you will find it does not work out correctly. This dataset is somehow special in the message column: There are commas that will be interpreted as separators in CSV file. Below is the data frame translated from the raw texts.
 
-```
+```no-highlight
           V1       V2    V3    V4                   V5               V6
 1 2014-02-01 09:20:25 James   Ken                  Hey             Ken!
 2 2014-02-01 09:20:29   Ken James                  Hey     how are you?
@@ -50,7 +50,7 @@ Before we apply the technique, we need some basic knowledge. The best way to mot
 
 Suppose we are dealing with the following texts (`fruits.txt`) and we need to distinguish texts that match a particular pattern from the ones that do not.
 
-```
+```no-highlight
 apple: 20
 orange: missing
 banana: 30
@@ -80,7 +80,7 @@ matches <- str_match(fruits,"\\w+:\\s\\d+")
 
 Note that `\` in R should be written as `\\` to avoid escaping. Then we can see what `matches` results in.
 
-```
+```no-highlight
      [,1]           
 [1,] "apple: 20"    
 [2,] NA             
@@ -107,7 +107,7 @@ matches <- str_match(fruits,"(\\w+):\\s(\\d+)")
 
 This time, `matches` is a matrix with more than one columns.
 
-```
+```no-highlight
      [,1]            [,2]         [,3]
 [1,] "apple: 20"     "apple"      "20"
 [2,] NA              NA           NA  
@@ -133,7 +133,7 @@ fruits.df$quantity <- as.integer(fruits.df$quantity)
 
 Now `fruits.df` is a data frame with the right header and data types.
 
-```
+```no-highlight
        fruit quantity
 1      apple       20
 2     banana       30
@@ -147,7 +147,7 @@ Now let's go back to the problem we face in the very beginning. The procedure is
 
 First, let's look at a typical line of the raw data.
 
-```
+```no-highlight
 2014-02-01,09:20:29,Ken,James,Hey, how are you?
 ```
 
@@ -159,7 +159,7 @@ However, there are situations where expected pattern does not appear at all. The
 
 Here I list some patterns that match `Text1` and `Text2` but do not match `Unmatched`.
 
-```
+```no-highlight
 Pattern       Text1  Text2  Unmatched 
 \d\d\w        23m    56k    a1p       
 \d+\w         1t     234g   m         
@@ -173,7 +173,7 @@ If you want to learn more specific examples and the full set of identifiers, [th
 
 Let's go back to our problem. We need to recognize a sufficiently general pattern of a typical line. The following is the pattern with grouping we should figure out.
 
-```
+```no-highlight
 (\d+-\d+-\d+),(\d+:\d+:\d+),(\w+),(\w+),\s*(.+)
 ```
 
@@ -197,7 +197,7 @@ The pattern here looks like some secret code. Don't worry. That's exactly how re
 
 The regular expression works perfectly. `msgs.df` looks like the following structure.
 
-```
+```no-highlight
         Date     Time Sender Receiver                 Message
 1 2014-02-01 09:20:25  James      Ken               Hey, Ken!
 2 2014-02-01 09:20:29    Ken    James       Hey, how are you?
