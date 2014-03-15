@@ -67,7 +67,7 @@ add <- function(x,y) {
 result <- lapply(1:10, add, y=3)
 ```
 
-Another way to do it is use *closure*. The code can be written like the following.
+Another way is to use *closure*. The code can be written like the following.
 
 ```r
 add <- function(y) {
@@ -78,7 +78,7 @@ add <- function(y) {
 result <- lapply(1:10,add(3))
 ```
 
-Here function `add` does not directly compute the value of `x+y`; instead, it computes a function that adds `y` to argument `x`. This returned anonymous function is called closure, which will be talked about in more details later.
+Here function `add` does not directly compute the value of `x+y`; instead, it computes a function that adds `y` to argument `x`. The anonymous function returned is called closure, which may be covered in more details in later posts.
 
 If you want to get a numeric vector rather than a list, you can use `sapply` instead. It is the same with `lapply` except for that it simplifies the result by yielding a vector or a matrix.
 
