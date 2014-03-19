@@ -25,3 +25,6 @@ If you currently do not have or plan to use R in your research projects, a good 
 Finally, a good IDE (Integrated Development Environment) boosts your productivity. For learning purpose, you may use the naive R GUI program. But for productive purpose, I recommend that you use [RStudio](http://www.rstudio.com/), a very powerful cross-platform R code editor that offers rich features like syntax highlighting, debugging, version control, etc.
 
 Have a nice trip with R!
+
+
+*This article may be archived by [R-bloggers](http://www.r-bloggers.com/).*

@@ -96,3 +96,6 @@ If you are familiar with SQL, the statement above is almost as friendly as plain
 You may try to implement it only by built-in R functions and you will certainly find SQL a very powerful tool. Here I should remark that `sqldf` is based on SQLite memory database and provides its `select` functionality. Since different database engines support the standard of SQL to a different degree, we are only allowed to use the SQL-SELECT statements within the support of SQLite database engine. You may get more information [here](http://www.sqlite.org/lang_select.html).
 
 In conclusion, SQL is a powerful tool so that R users should pick it up. And `sqldf` is the way we use this language with R to operate data frame in a more decent way. `sqldf` is listed on [CRAN](http://cran.r-project.org/web/packages/sqldf/) and is hosted by [Google Code](https://code.google.com/p/sqldf/). Its official website offers a comprehensive tutorial and frequently asked questions.
+
+
+*This article may be archived by [R-bloggers](http://www.r-bloggers.com/).*

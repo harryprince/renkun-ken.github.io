@@ -93,3 +93,6 @@ Error in as.data.frame.default(data) :
 From the above examples and experiments, the bottom line gets clear: to reduce ambiguity, we should use either `<-` or `=` as assignment operator, and only use `=` as named-parameter specifier for functions.
 
 In conclusion, for better readability of R code, I suggest that we only use `<-` for assignment and `=` for specifying named parameters.
+
+
+*This article may be archived by [R-bloggers](http://www.r-bloggers.com/).*

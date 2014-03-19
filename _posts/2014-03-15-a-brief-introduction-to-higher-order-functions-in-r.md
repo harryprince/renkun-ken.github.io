@@ -89,3 +89,6 @@ result <- sapply(1:10,add(3))
 In addition to `lapply` and `sapply`, R offers several more higher-order functions. `apply` calls a function to aggregate a certain dimension of a matrix. More common in other functional programming languages are `Filter`, `Map`, `Reduce`, `Find`, `Position`, and `Negate`. For more details on how we can use these higher-order functions, please read *Common Higher-Order Functions in Functional Programming Languages* in R documentation.
 
 In R programming, I strongly recommend that you use higher-order functions to do most iterative tasks and better avoid using for-loops to minimize the unnecessary side effects that may reduce the performance and accountability of your code.
+
+
+*This article may be archived by [R-bloggers](http://www.r-bloggers.com/).*

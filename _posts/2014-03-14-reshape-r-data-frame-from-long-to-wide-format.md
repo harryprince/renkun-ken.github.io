@@ -58,3 +58,7 @@ wstocks[stocks$Date < as.Date("2005-01-01"),"A15"]
 Since the columns are well defined and there are much less rows to perform the comparison operator, the computing performance is hugely improved.
 
 Although this article only demonstrates a little part `reshape2` could do,  this package does more than this. To learn more, you may visit Sean Anderson's [introduction](http://www.seananderson.ca/2013/10/19/reshape.html), or go to [Stack Overflow](http://stackoverflow.com/questions/tagged/reshape2/) and learn from peer experiences.
+
+
+
+*This article may be archived by [R-bloggers](http://www.r-bloggers.com/).*

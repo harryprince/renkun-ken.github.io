@@ -112,3 +112,6 @@ colnames(df) <- profile$columns
 `modifyList` is a built-in function in R. It updates a list by merging updated fields and introducing new fields in the list and sublists recursively.
 
 Now we may create several differnt set of settings and operate the machine in a very flexible way.
+
+
+*This article may be archived by [R-bloggers](http://www.r-bloggers.com/).*
