@@ -15,7 +15,7 @@ add <- function(x,y,z) {
 product <- function(x,y,z) {
     x*y*z
 }
-aggregate(x,y,z,fun) {
+aggregate <- function(x,y,z,fun) {
     fun(x,y,z)
 }
 ```
