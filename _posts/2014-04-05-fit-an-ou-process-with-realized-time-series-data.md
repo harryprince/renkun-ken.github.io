@@ -12,7 +12,7 @@ However, there are financial indicators or variables that also exhibit, at least
 
 In R, a package named `{sde}` provides functions to deal with a wide range of stochasic differential equations including the discrete version of Ornstein-Uhlenbeck process. Here, I will show you how to fit an OU-process with discrete time series data.
 
-First, we simulate an OU-process to generate some discrete data. Although `{sde}` package does not provide a specific function that only simulates this stochastic process, it offers a much more general one. `sde.sim` is a function to simulate any stochastic differential equation in the form $[dx_t = \mu(x_t,t)\,dt + \sigma(x_t,t)\, dW_t]$ where $(\mu(x_t,t))$ is the drift function with respect to $x_t$ and $t$, and $(\sigma(x_t,t))$ is the volatility function also with respect to $x_t$ and $t$.
+First, we simulate an OU-process to generate some discrete data. Although `{sde}` package does not provide a specific function that only simulates this stochastic process, it offers a much more general one. `sde.sim` is a function to simulate any stochastic differential equation in the form $[dx_t = \mu(x_t,t)\,dt + \sigma(x_t,t)\, dW_t]$ where $(\mu(x_t,t))$ is the drift function with respect to $x_t$ and $t$, and $(\sigma(x_t,t))$ is the volatility function also with respect to $(x_t)$ and $(t)$.
 
 The following code shows how we may simulate an OU-process with `sde.sim`. It also demonstrate the power of R because it allows you to create symbolic expressions to represent any stochastic differential equation that can be expressed by the formula above.
 
@@ -36,9 +36,9 @@ ou.lik <- function(x) {
 }
 ```
 
-One thing to remind is that `dcOU` function calculates the joint density of a given set of data assuming that the data follows an OU-process. However, it parameterizes OU-process in a little bit different way as we have just mentioned. The equation for `dcOU` is $[dx_t = (\theta_1 - \theta_2 x_t)\,dt + \theta_3 \, dW_t] where $((\theta_1,\theta_2,\theta_3))$ is used to fully characterize the OU-process.
+One thing to remind is that `dcOU` function calculates the joint density of a given set of data assuming that the data follows an OU-process. However, it parameterizes OU-process in a little bit different way as we have just mentioned. The equation for `dcOU` is $[dx_t = (\theta_1 - \theta_2 x_t)\,dt + \theta_3 \, dW_t]$ where $((\theta_1,\theta_2,\theta_3))$ is used to fully characterize the OU-process.
 
-Given the above parameterization, then we call `mle` to perform maximal likelihood estimation for the spread process given an initial trial value of $(\theta)$. To boost the speed, we constrain the parameter space to a smaller one, say, from $((0,10^{-5},10^{-3}))$ to $((1,1,1))$.
+Given the above parameterization, then we call `mle` to perform maximal likelihood estimation for the spread process given an initial trial value of $((\theta_1,\theta_2,\theta_3))$. To boost the speed, we constrain the parameter space to a smaller one, say, from $((0,10^{-5},10^{-3}))$ to $((1,1,1))$.
 
 ```r
 ou.fit <- mle(ou.lik(spread),
