@@ -70,7 +70,7 @@ rnorm(10000,mean=10,sd=1) %>>%
   plot(.,col="red",type="l",main=sprintf("length: %d",length(.)))
 ```
 
-The difference is quite obvious: the environment of the chained function calls contains a specially defined variable `.` to represent the resulted object up to the previous evaluation. If a function is directly supplied, `.` will automatically server as the first argument.
+The difference is quite obvious: the environment of the chained function calls contains a specially defined variable `.` to represent the resulted object up to the previous evaluation. If a function is directly supplied, `.` will automatically serve as the first argument.
 
 The existing packages encounter some problems when the authors try to create a unified pipe operator that deals with all situations including first-argument piping (`%>%`) and free-piping (`%>>%`). One is when `.` has some special meaning in `formula` object. To avoid ambiguity and reduce the risk of wrong guesses, I decide to provide two separate pipe operators and let the user decide which style of piping is to be used.
 
