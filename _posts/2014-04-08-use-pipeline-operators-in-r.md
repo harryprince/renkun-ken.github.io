@@ -38,7 +38,7 @@ In simple words, the F# code above first filter the array from 1 to 100 by selec
 
 The magic of the pipeline operator, `|>`, in F# is nothing but a higher order function that takes two arguments: `x`, the object to be piped, and `f`, the function to take the piped object as the first argument.
 
-Thanks to the language design, this kind of magic is immediately implementable in R. I wrote a package called `pipeR` hosted by [GitHub](https://github.com/renkun-ken/pipeR), which is quite similar with the already existing package [`magrittr`](http://cran.r-project.org/package=magrittr). Both of these packages provide `%>%` operator to pipe the resulted object forward to the first argument of the next function call. The following code is an equivalent example of the five-step example in the beginning:
+Thanks to the language design, this kind of magic is immediately implementable in R. I created a package called [`pipeR`](http://renkun.me/pipeR/) hosted by [GitHub](https://github.com/renkun-ken/pipeR), which is quite similar with the already existing package [`magrittr`](http://cran.r-project.org/package=magrittr). Both of these packages provide `%>%` operator to pipe the resulted object forward to the first argument of the next function call. The following code is an equivalent example of the five-step example in the beginning:
 
 ```r
 rnorm(10000,mean=10,sd=1) %>%
