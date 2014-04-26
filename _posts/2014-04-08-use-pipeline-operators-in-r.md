@@ -65,8 +65,8 @@ Note that some function calls in the command chain need to use more than once of
 ```r
 rnorm(10000,mean=10,sd=1) %>>%
   sample(.,size=length(.)*0.2,replace=FALSE) %>>%
-  log %>>%
-  diff %>>%
+  log %>%
+  diff %>%
   plot(.,col="red",type="l",main=sprintf("length: %d",length(.)))
 ```
 
@@ -106,5 +106,6 @@ hflights %>%
 
 Just imagine how long the code will be and how many intermediate variables will you define if you don't use any pipe operators. To write readable, flexible, and maintainable code for data manipulation, please consider using pipe operators.
 
+*Some contents are updated to adapt to the latest version of pipeR.*
 
 *This article may be archived by [R-bloggers](http://www.r-bloggers.com/).*
