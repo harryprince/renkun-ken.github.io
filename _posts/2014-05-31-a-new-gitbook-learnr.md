@@ -14,7 +14,7 @@ I created [learnR](https://github.com/renkun-ken/learnR) project and decided to 
 
 Thanks to Jason Bryer's [Rgitbook](https://github.com/jbryer/Rgitbook) package! It allows me to write the book in [R Markdown](http://rmarkdown.rstudio.com/) and transform the output to markdown.
 
-The gitbook is still in its early stage, but it's already online for [preview](http://renkun.me/learnR], and the contents are planned as the following:
+The gitbook is still in its early stage, but it's already online for [preview](http://renkun.me/learnR), and the contents are planned as the following:
 
 * Quick start
     * What is R
