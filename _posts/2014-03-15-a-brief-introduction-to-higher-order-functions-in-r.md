@@ -90,5 +90,3 @@ In addition to `lapply` and `sapply`, R offers several more higher-order functio
 
 In R programming, I strongly recommend that you use higher-order functions to do most iterative tasks and better avoid using for-loops to minimize the unnecessary side effects that may reduce the performance and accountability of your code.
 
-
-*This article may be archived by [R-bloggers](http://www.r-bloggers.com/).*

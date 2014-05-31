@@ -50,5 +50,3 @@ ou.coe
 
 The fitting result will be printed to the console then.
 
-
-*This article may be archived by [R-bloggers](http://www.r-bloggers.com/).*

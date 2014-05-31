@@ -107,5 +107,3 @@ hflights %>%
 Just imagine how long the code will be and how many intermediate variables will you define if you don't use any pipe operators. To write readable, flexible, and maintainable code for data manipulation, please consider using pipe operators.
 
 *Some contents are updated to adapt to the latest version of pipeR.*
-
-*This article may be archived by [R-bloggers](http://www.r-bloggers.com/).*

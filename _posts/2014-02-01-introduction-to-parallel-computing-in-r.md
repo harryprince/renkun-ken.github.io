@@ -130,6 +130,3 @@ A tip for writing R loop in which iterations are independent with each other is 
 As a result, a better development procedure is like this: First, write code with `sapply` or `lapply` to ensure the code works. Then alter these functions to their parallel version if you need a higher performance.
 
 This post only works for the situation where the function each node runs does not require non-elementary packages and does not refer to *outer* resources in the environment. In my later posts, I will introduce how we run functions in standalone code file over cluster nodes which may require non-elementary packages, and how we pass variables in the current environment to the environment of the cluster nodes.
-
-
-*This article may be archived by [R-bloggers](http://www.r-bloggers.com/).*
