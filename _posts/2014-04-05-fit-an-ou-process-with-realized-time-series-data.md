@@ -6,7 +6,7 @@ categories:
 - R
 ---
 
-As we know, a Brownian motion is usually formulated as `$$dx_t = \mu\,dt+\sigma\,dW_t$$` which is the continuous case of a random walk. In some cases, it is quite convenient to use this formulation to describe the characteristic of asset prices due to its highly unpredictable behavior.
+As we know, a Brownian motion is usually formulated as $$dx_t = \mu\,dt+\sigma\,dW_t$$ which is the continuous case of a random walk. In some cases, it is quite convenient to use this formulation to describe the characteristic of asset prices due to its highly unpredictable behavior.
 
 However, there are financial indicators or variables that also exhibit, at least temporarily, stable behavior. For example, two companies with great homogeneity may be reflected in the synchronous co-movement of their stock prices. The value of a neutral portfolio composed of a long position of the one stock and a appropriately determined short position of the other may also exhibit such stationary mean-reverting behavior. Such behavior can be captured by *Ornstein-Uhlenbeck process*. It is often used to characterize stationary mean-reverting data-generating process like $$dx_t = \theta (\mu-x_t)\,dt + \sigma\, dW_t$$ where $x_t$ denotes the the value of the portfolio, often called the *spread*, $\theta$ and $\mu$ are two parameters to capture the magnitude of the mean-reverting force, and $\sigma$ is a parameter to capture the diverting volatility.
 
