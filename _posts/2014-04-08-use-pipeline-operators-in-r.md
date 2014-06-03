@@ -38,17 +38,17 @@ In simple words, the F# code above first filter the array from 1 to 100 by selec
 
 The magic of the pipeline operator, `|>`, in F# is nothing but a higher order function that takes two arguments: `x`, the object to be piped, and `f`, the function to take the piped object as the first argument.
 
-Thanks to the language design, this kind of magic is immediately implementable in R. I created a package called [`pipeR`](http://renkun.me/pipeR/) hosted by [GitHub](https://github.com/renkun-ken/pipeR), which is quite similar with the already existing package [`magrittr`](http://cran.r-project.org/package=magrittr). Both of these packages provide `%>%` operator to pipe the resulted object forward to the first argument of the next function call. The following code is an equivalent example of the five-step example in the beginning:
+Thanks to the language design, this kind of magic is immediately implementable in R. I created a package called [`pipeR`](http://renkun.me/pipeR/) hosted by [GitHub](https://github.com/renkun-ken/pipeR) and released to [CRAN](http://cran.r-project.org/package=pipeR), which is quite similar with the already existing package [`magrittr`](http://cran.r-project.org/package=magrittr). Both of these packages provide operators to pipe the resulted object forward to the first argument of the next function call. The following code is an example of the five-step example in the beginning using `pipeR`:
 
 ```r
-rnorm(10000,mean=10,sd=1) %>%
-  sample(size=100,replace=FALSE) %>%
-  log %>%
-  diff %>%
+rnorm(10000,mean=10,sd=1) %>>%
+  sample(size=100,replace=FALSE) %>>%
+  log %>>%
+  diff %>>%
   plot(col="red",type="l")
 ```
 
-The thing `%>%` does is simple: pipe the value on the left-hand side to be the first argument of the function call on the right-hand side. Its functionality is very similar with the F# pipeline operator. As we can see, the code becomes much clearer than the nested version, which also results in greater flexibility. When the demand changes, it is very handy to add or remove steps from the chain of commands without reorganizing the structure of the code.
+The thing `%>>%` does is simple: pipe the value on the left-hand side to be the first argument of the function call on the right-hand side. Its functionality is very similar with the F# pipeline operator. As we can see, the code becomes much clearer than the nested version, which also results in greater flexibility. When the demand changes, it is very handy to add or remove steps from the chain of commands without reorganizing the structure of the code.
 
 However, sometimes we don't only need the object to be piped to the first argument of the next function call; instead, we may need to pipe it to non-first argument, to the expression in the argument, or even to multiple places.
 
@@ -60,19 +60,19 @@ Consider a more complex example similar with the very first one. Now we need to 
 4. Take difference of the log numbers
 5. Finally, plot these log differences as red line segments with a title containing the number of observations
 
-Note that some function calls in the command chain need to use more than once of the resulted object. `pipeR` provides a more powerful pipe operator, `%>>%`, that uses `.` to represent the previous result in the next function call. To demonstrate how it functions, let's take a look at how it solves this problem.
+Note that some function calls in the command chain need to use more than once of the resulted object. `pipeR` provides a more powerful pipe operator, `%:>%`, that uses `.` to represent the previous result in the next function call. To demonstrate how it functions, let's take a look at how it solves this problem.
 
 ```r
-rnorm(10000,mean=10,sd=1) %>>%
-  sample(.,size=length(.)*0.2,replace=FALSE) %>>%
-  log %>%
-  diff %>%
+rnorm(10000,mean=10,sd=1) %:>%
+  sample(.,size=length(.)*0.2,replace=FALSE) %:>%
+  log %>>%
+  diff %>>%
   plot(.,col="red",type="l",main=sprintf("length: %d",length(.)))
 ```
 
 The difference is quite obvious: the environment of the chained function calls contains a specially defined variable `.` to represent the resulted object up to the previous evaluation. If a function is directly supplied, `.` will automatically serve as the first argument.
 
-The existing packages encounter some problems when the authors try to create a unified pipe operator that deals with all situations including first-argument piping (`%>%`) and free-piping (`%>>%`). One is when `.` has some special meaning in `formula` object. To avoid ambiguity and reduce the risk of wrong guesses, I decide to provide two separate pipe operators and let the user decide which style of piping is to be used.
+The existing packages encounter some problems when the authors try to create a unified pipe operator that deals with all situations including first-argument piping (`%>>%`) and free-piping (`%:>%`). One is when `.` has some special meaning in `formula` object. To avoid ambiguity and reduce the risk of wrong guesses, I decide to provide two separate pipe operators and let the user decide which style of piping is to be used.
 
 The power of pipe operators is more unleashed with `dplyr` package when we manipulate data by command chain. The following example demonstrate this point. We load `dplyr` package to use its handy functions for data manipulation and `hflights` packages to import its example data set.
 
@@ -91,15 +91,15 @@ library(dplyr)
 library(hflights)
 data(hflights)
 
-hflights %>%
-  mutate(Speed=Distance/ActualElapsedTime) %>%
-  group_by(UniqueCarrier) %>%
+hflights %>>%
+  mutate(Speed=Distance/ActualElapsedTime) %>>%
+  group_by(UniqueCarrier) %>>%
   summarize(n=length(Speed),speed.mean=mean(Speed,na.rm = T),
     speed.median=median(Speed,na.rm=T),
-    speed.sd=sd(Speed,na.rm=T)) %>%
-  mutate(speed.ssd=speed.mean/speed.sd) %>%
-  arrange(desc(speed.ssd)) %>>%
-  assign("hflights.speed",.,.GlobalEnv) %>>%
+    speed.sd=sd(Speed,na.rm=T)) %>>%
+  mutate(speed.ssd=speed.mean/speed.sd) %>>%
+  arrange(desc(speed.ssd)) %:>%
+  assign("hflights.speed",.,.GlobalEnv) %:>%
   barplot(.$speed.ssd, names.arg = .$UniqueCarrier,
     main=sprintf("Standardized mean of %d carriers", nrow(.)))
 ```
