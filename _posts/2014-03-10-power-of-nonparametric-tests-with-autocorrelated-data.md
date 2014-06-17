@@ -1,3 +1,5 @@
+
+
 ---
 layout: post
 title: Power of nonparametric tests with autocorrelated data
@@ -222,7 +224,7 @@ From the output data above, we see that the phenomena previously presented still
 plot.tests(list(testr1,testr2),c("(n=100)","(n=500)"))
 ```
 
-![plot of chunk npowertest12](assets/images/npowertest121.png) ![plot of chunk npowertest12](assets/images/npowertest122.png) 
+![plot of chunk npowertest12](/assets/images/npowertest121.png) ![plot of chunk npowertest12](/assets/images/npowertest122.png) 
 
 As we can see, $\theta=0$ is a benchmark where the MA process degenerates to iid case, resulting in the proper probability of correct rejection of $\mathcal{H}_{0}$ while for other $\theta$ the pattern of under-rejection and over-rejection still holds.
 
@@ -267,6 +269,6 @@ To illustrate this point, we again make a contrast of the test performance of hi
 plot.tests(list(testr2,testr3),c("(order=1)","(order=2)"))
 ```
 
-![plot of chunk npowertest23](assets/images/npowertest231.png) ![plot of chunk npowertest23](assets/images/npowertest232.png) 
+![plot of chunk npowertest23](/assets/images/npowertest231.png) ![plot of chunk npowertest23](/assets/images/npowertest232.png) 
 
 As we can see, the magnitude for each group of tests get greater when the order of autocorrelation gets larger as we observe in the table.
