@@ -1,5 +1,3 @@
-
-
 ---
 layout: post
 title: Power of nonparametric tests with autocorrelated data
@@ -7,6 +5,8 @@ categories:
 - blog
 - stats
 ---
+
+
 
 The classical nonparametric tests are known to require strong assumptions such as simple sample (iid). However, most economic and financial data are not generated in an independent manner. Rather, current economic or financial variables are jointly determined not only by current situations but also by history. Therefore, a major part of real-world data does not satisfy the condition required to apply these nonparametric methods only because the data are in the form of time series.
 
@@ -199,22 +199,22 @@ testr2
 -0.9 0.00 0.00 0.01       0.00     0.00
 -0.8 0.00 0.00 0.02       0.00     0.00
 -0.7 0.00 0.00 0.00       0.00     0.00
--0.6 0.00 0.00 0.02       0.00     0.00
--0.5 0.00 0.00 0.00       0.00     0.00
--0.4 0.00 0.00 0.01       0.00     0.00
--0.3 0.01 0.01 0.01       0.01     0.01
--0.2 0.00 0.00 0.03       0.00     0.00
--0.1 0.00 0.00 0.00       0.00     0.00
-0    0.02 0.01 0.03       0.02     0.02
-0.1  0.02 0.02 0.04       0.02     0.02
-0.2  0.02 0.04 0.03       0.04     0.03
-0.3  0.05 0.06 0.06       0.06     0.06
-0.4  0.02 0.02 0.02       0.04     0.04
-0.5  0.03 0.04 0.02       0.08     0.05
-0.6  0.13 0.12 0.08       0.14     0.14
-0.7  0.05 0.06 0.08       0.09     0.09
-0.8  0.07 0.08 0.05       0.10     0.08
-0.9  0.04 0.05 0.02       0.06     0.04
+-0.6 0.00 0.00 0.01       0.00     0.00
+-0.5 0.00 0.00 0.01       0.00     0.00
+-0.4 0.00 0.00 0.00       0.00     0.00
+-0.3 0.00 0.00 0.00       0.00     0.00
+-0.2 0.00 0.00 0.02       0.00     0.00
+-0.1 0.01 0.00 0.01       0.01     0.00
+0    0.03 0.03 0.02       0.03     0.04
+0.1  0.04 0.04 0.04       0.04     0.04
+0.2  0.06 0.05 0.05       0.07     0.06
+0.3  0.05 0.04 0.07       0.09     0.08
+0.4  0.05 0.04 0.08       0.05     0.05
+0.5  0.09 0.09 0.08       0.12     0.11
+0.6  0.02 0.03 0.03       0.06     0.05
+0.7  0.09 0.10 0.08       0.16     0.14
+0.8  0.07 0.07 0.07       0.10     0.09
+0.9  0.11 0.13 0.07       0.16     0.16
 ```
 
 From the output data above, we see that the phenomena previously presented still persist and somewhat become more obvious as the extent of over-rejection is even higher with larger samples. To make a contrast between these two cases, we then plot the probability of rejection under $\mathcal{H}_{0}$ for each $\theta$.
@@ -239,25 +239,25 @@ testr3
 
 ```
      mw.W wt.V ks.D unpaired.t paired.t
--0.9 0.00 0.00 0.00       0.00     0.00
--0.8 0.00 0.00 0.00       0.00     0.00
--0.7 0.00 0.00 0.02       0.00     0.00
--0.6 0.00 0.00 0.02       0.00     0.00
--0.5 0.00 0.00 0.00       0.00     0.00
--0.4 0.00 0.00 0.01       0.00     0.00
--0.3 0.00 0.00 0.01       0.00     0.00
--0.2 0.00 0.00 0.00       0.00     0.00
--0.1 0.00 0.00 0.00       0.01     0.00
-0    0.03 0.02 0.02       0.03     0.03
-0.1  0.09 0.07 0.04       0.07     0.07
-0.2  0.05 0.05 0.03       0.07     0.07
-0.3  0.11 0.10 0.06       0.14     0.13
-0.4  0.15 0.15 0.10       0.15     0.15
-0.5  0.24 0.19 0.15       0.23     0.24
-0.6  0.13 0.14 0.07       0.13     0.15
-0.7  0.18 0.18 0.14       0.19     0.19
-0.8  0.12 0.15 0.10       0.15     0.15
-0.9  0.16 0.15 0.16       0.18     0.19
+-0.9 0.00 0.00 0.03       0.00     0.00
+-0.8 0.00 0.00 0.05       0.00     0.00
+-0.7 0.00 0.00 0.06       0.00     0.00
+-0.6 0.00 0.00 0.05       0.00     0.00
+-0.5 0.00 0.00 0.07       0.00     0.00
+-0.4 0.00 0.00 0.08       0.00     0.00
+-0.3 0.00 0.00 0.06       0.00     0.00
+-0.2 0.00 0.00 0.04       0.00     0.00
+-0.1 0.00 0.00 0.03       0.00     0.00
+0    0.01 0.02 0.06       0.01     0.01
+0.1  0.05 0.08 0.07       0.06     0.06
+0.2  0.06 0.08 0.03       0.07     0.07
+0.3  0.07 0.09 0.03       0.07     0.08
+0.4  0.12 0.13 0.05       0.11     0.11
+0.5  0.10 0.10 0.07       0.10     0.10
+0.6  0.07 0.08 0.09       0.08     0.07
+0.7  0.10 0.15 0.05       0.12     0.11
+0.8  0.20 0.18 0.09       0.13     0.14
+0.9  0.11 0.10 0.10       0.11     0.12
 ```
 
 From the output data above, we see the same pattern of under-rejection and over-rejection each test presents as stated in the previous cases. However, with higher order of autocorrelation, captured by MA(2) process, the magnitude of over-rejection enlarges for each test. This can be interpreted as data with higher order of positive autocorrelation will be uniformly over-rejected by the tests we examined.
