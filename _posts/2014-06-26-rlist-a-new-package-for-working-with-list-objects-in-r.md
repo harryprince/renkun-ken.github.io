@@ -5,8 +5,6 @@ categories:
 - r
 ---
 
-
-
 In recent years, non-relational data have attracted more and more attentions. Roughly speaking, all datasets that are hard to put into a rectangular table with rows and columns are non-relational datasets.
 
 The following data is a very simple non-relational dataset in JSON format. The dataset contains some information of three programmers, each of whom has a name, an age, some interests, and a list of programming languages with the number of years used.
