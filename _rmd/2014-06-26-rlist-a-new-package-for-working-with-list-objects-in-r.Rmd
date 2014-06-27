@@ -74,7 +74,13 @@ This package has two main goals:
 
 ## Installation
 
-You can install the latest development version from GitHub with
+You can install this package from CRAN with
+
+```r
+install.packages("rlist")
+```
+
+or install the latest development version from GitHub with
 
 ```r
 devtools::install_github("rlist","renkun-ken")
