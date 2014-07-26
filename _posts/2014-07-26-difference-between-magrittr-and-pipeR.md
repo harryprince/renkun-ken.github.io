@@ -9,7 +9,7 @@ categories:
 
 Pipeline is receiving increasing attention in R community these days. It is hard to tell when it starts but more people start to use it since the easy-and-fast [dplyr](https://github.com/hadley/dplyr) package imports the magic operator `%>%` from [magrittr](https://github.com/smbache/magrittr), the pioneer package of pipeline operators for R.
 
-The two packages co-work well: dplyr works with data frames by a set of basic opeartions, and magrittr chains these operations together and makes the data manipulation process consistent with our intuition.
+The two packages co-work well: dplyr works with data frames by a set of basic operations, and magrittr chains these operations together and makes the data manipulation process consistent with our intuition.
 
 A little example will demonstrate how easy it is to work with dplyr and the magic `%>%`.
 
@@ -76,7 +76,7 @@ system.time({
 
 ```
    user  system elapsed 
-  25.89    0.00   25.96 
+  26.61    0.00   26.64 
 ```
 
 It took rather a long time to go through the iterations, which motivated me to developed [pipeR](http://renkun.me/pipeR) package that provides high performance operators.
@@ -107,7 +107,7 @@ system.time({
 
 ```
    user  system elapsed 
-   2.37    0.00    2.37 
+   2.52    0.00    2.52 
 ```
 
 The performance improvement is significant, especially in nested loops. The cost is that we need to know exactly which operator we need
@@ -117,4 +117,4 @@ In conclusion, here is my recommendation:
 - If you do interactive analysis or want it to be simple and robust and do not care about the performance, `%>%` is the perfect choice. It also provides aliases of basic functions to make piping more friendly.
 - If you care about performance issues, feel sure about the type of piping to use, or want to use pipeline in massive or nested loops, pipeR operators can be good choices.
 
-Since the two packages use different set of symbols, they are fully compatibile with each other. You may choose according to your needs and considerations, and finally, enjoy piping!
+Since the two packages use different set of symbols, they are fully compatible with each other. You may choose according to your needs and considerations, and finally, enjoy piping!
