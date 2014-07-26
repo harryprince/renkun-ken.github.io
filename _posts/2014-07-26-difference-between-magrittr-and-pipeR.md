@@ -61,7 +61,7 @@ Groups: Species
 
 Thanks for magrittr's `%>%`, the code is quite easy to read because all verbs are chained in a pipeline.
 
-However, if the operator is used in nested loops, the performance can be very low. Suppose we are solving such a problem: Conduct an experiment for 50000 times. Each time we take a random sample from lower letters (a-z) with replacement, paste these letters and see whether it equals the string *rstats*. The following code is a simple and intuitive solution.
+However, if the operator is used in nested loops, the performance can be very low. Suppose we are solving such a problem: Conduct an experiment for 100000 times. Each time we take a random sample from lower letters (a-z) with replacement, paste these letters and see whether it equals the string *rstats*. The following code is a simple and intuitive solution.
 
 
 ```r
@@ -76,7 +76,7 @@ system.time({
 
 ```
    user  system elapsed 
-  26.61    0.00   26.64 
+  26.34    0.00   26.34 
 ```
 
 It took rather a long time to go through the iterations, which motivated me to developed [pipeR](http://renkun.me/pipeR) package that provides high performance operators.
@@ -107,7 +107,7 @@ system.time({
 
 ```
    user  system elapsed 
-   2.52    0.00    2.52 
+   2.53    0.00    2.53 
 ```
 
 The performance improvement is significant, especially in nested loops. The cost is that we need to know exactly which operator we need

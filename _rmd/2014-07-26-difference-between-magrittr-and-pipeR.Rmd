@@ -38,7 +38,7 @@ iris %>%
 
 Thanks for magrittr's `%>%`, the code is quite easy to read because all verbs are chained in a pipeline.
 
-However, if the operator is used in nested loops, the performance can be very low. Suppose we are solving such a problem: Conduct an experiment for 50000 times. Each time we take a random sample from lower letters (a-z) with replacement, paste these letters and see whether it equals the string *rstats*. The following code is a simple and intuitive solution.
+However, if the operator is used in nested loops, the performance can be very low. Suppose we are solving such a problem: Conduct an experiment for 100000 times. Each time we take a random sample from lower letters (a-z) with replacement, paste these letters and see whether it equals the string *rstats*. The following code is a simple and intuitive solution.
 
 ```{r}
 system.time({
