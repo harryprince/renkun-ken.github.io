@@ -76,7 +76,7 @@ system.time({
 
 ```
    user  system elapsed 
-  26.34    0.00   26.34 
+  26.77    0.00   26.76 
 ```
 
 It took rather a long time to go through the iterations, which motivated me to developed [pipeR](http://renkun.me/pipeR) package that provides high performance operators.
@@ -107,14 +107,14 @@ system.time({
 
 ```
    user  system elapsed 
-   2.53    0.00    2.53 
+   2.50    0.00    2.51 
 ```
 
-The performance improvement is significant, especially in nested loops. The cost is that we need to know exactly which operator we need
+The performance improvement is significant, especially in nested loops, but he cost is that we have to know in advance which operator should take charge.
 
-In conclusion, here is my recommendation:
+So here is my recommendation:
 
 - If you do interactive analysis or want it to be simple and robust and do not care about the performance, `%>%` is the perfect choice. It also provides aliases of basic functions to make piping more friendly.
-- If you care about performance issues, feel sure about the type of piping to use, or want to use pipeline in massive or nested loops, pipeR operators can be good choices.
+- If you care about performance issues, feel sure about the type of piping to use, or want to use pipeline in massive or nested loops, or want to avoid ambiguity in reading since `.` can be meaningful within some functions like `do()`, pipeR operators can be good choices.
 
 Since the two packages use different set of symbols, they are fully compatible with each other. You may choose according to your needs and considerations, and finally, enjoy piping!
