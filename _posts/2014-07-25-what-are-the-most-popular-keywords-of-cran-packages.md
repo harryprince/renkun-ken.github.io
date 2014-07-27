@@ -9,7 +9,7 @@ categories:
 
 A large proportion of R's power should be attributed to the enormous amount of extension packages. Most of the packages are hosted on [CRAN](http://cran.r-project.org).
 
-These packages cover a wide range of fields. In this post, I'll show you how to use R to scrap the descriptions of all CRAN packages from the [web page](http://cran.r-project.org/web/packages/available_packages_by_date.html) and find out which keywords are the most popular.
+These packages cover a wide range of fields. In this post, I'll show you how to use R to scrap the titles of all CRAN packages from the [web page](http://cran.r-project.org/web/packages/available_packages_by_date.html) and find out which keywords are the most popular.
 
 To minimize the efforts, we try best to avoid reinventing the wheels and get some answer as quickly as possible. We only use existing packages to do all the work.
 
