@@ -5,6 +5,7 @@ categories:
 - r
 highlight:
 - r
+- fsharp
 ---
 
 In data-driven statistical computing and data analysis, applying a chain of commands step by step is a common situation. However, it is neither straightforward nor flexible to write a group of deeply nested functions. It is because the function that comes later must be written first. 
