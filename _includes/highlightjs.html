@@ -1,6 +1,9 @@
-{% if site.theme.highlightjs %}
-<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.1/styles/{{ site.theme.highlightjs }}.min.css">
+{% if site.highlightjs.enabled %}
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.1/styles/{{ site.highlightjs.theme }}.min.css">
 <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.1/highlight.min.js"></script>
+{% for lang in site.highlightjs.langs %}
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.1/languages/{{ lang }}.min.js"></script>
+{% endfor %}
 <script>
 hljs.configure({languages: []})
 hljs.initHighlightingOnLoad();
