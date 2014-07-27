@@ -1,7 +1,7 @@
-{% if site.highlightjs.enabled %}
-<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.1/styles/{{ site.highlightjs.theme }}.min.css">
+{% if site.theme.highlightjs %}
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.1/styles/{{ site.theme.highlightjs }}.min.css">
 <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.1/highlight.min.js"></script>
-{% for lang in site.highlightjs.langs %}
+{% for lang in page.highlight %}
 <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.1/languages/{{ lang }}.min.js"></script>
 {% endfor %}
 <script>

@@ -2,8 +2,9 @@
 layout: post
 title: Difference between assignment operators in R
 categories:
-- blog
-- R
+- r
+highlight:
+- r
 ---
 
 For R beginners, the first operator they use is probably the *assignment operator* `<-`. [Google's R Style Guide](http://google-styleguide.googlecode.com/svn/trunk/Rguide.xml) suggests the usage of `<-` rather than `=` even though the equal sign is also allowed in R to do exactly the same thing when we assign a value to a variable. However, you might feel inconvenient because you need to type two characters to represent one symbol, which is different from many other programming languages.

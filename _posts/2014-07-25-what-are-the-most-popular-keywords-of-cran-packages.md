@@ -3,6 +3,8 @@ layout: post
 title: "What are the most popular keywords of CRAN packages?"
 categories:
 - r
+highlight:
+- r
 ---
 
 

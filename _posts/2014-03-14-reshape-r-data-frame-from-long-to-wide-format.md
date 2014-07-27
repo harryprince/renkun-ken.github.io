@@ -2,8 +2,9 @@
 layout: post
 title: Reshape R data frame from long to wide format
 categories:
-- blog
-- R
+- r
+highlight:
+- r
 ---
 
 Oftentimes, we obtain a long or a wide table from a certain data source, and it may be the only format we can get. For example, some financial databases provide daily tick data for all stocks in a financial market. The data table may be arranged in a *long format* like this:

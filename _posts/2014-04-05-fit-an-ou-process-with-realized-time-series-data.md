@@ -2,8 +2,9 @@
 layout: post
 title: Fit an Ornstein–Uhlenbeck process with discrete time series data
 categories:
-- blog
-- R
+- r
+highlight:
+- r
 ---
 
 As we know, a Brownian motion is usually formulated as $$dx_t = \mu\,dt+\sigma\,dW_t$$ which is the continuous case of a random walk. In some cases, it is quite convenient to use this formulation to describe the characteristic of asset prices due to its highly unpredictable behavior.

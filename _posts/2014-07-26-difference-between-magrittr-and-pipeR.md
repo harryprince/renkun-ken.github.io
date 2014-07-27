@@ -3,6 +3,8 @@ layout: post
 title: Difference between magrittr and pipeR
 categories:
 - r
+highlight:
+- r
 ---
 
 

@@ -3,6 +3,8 @@ layout: post
 title: "What are the most popular keywords of CRAN packages?"
 categories:
 - r
+highlight:
+- r
 ---
 
 ```{r knitsetup, echo=FALSE, results='hide', warning=FALSE, message=FALSE, cache=FALSE}

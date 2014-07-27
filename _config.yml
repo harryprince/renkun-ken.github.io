@@ -41,7 +41,5 @@ theme:
   # Disqus site-id
   disqus: renkun-ken
 
-highlightjs:
-  enabled: true
-  langs: ["r","json"]
-  theme: googlecode
+  # highlight.js
+  highlightjs: googlecode

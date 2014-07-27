@@ -2,8 +2,9 @@
 layout: post
 title: Power of nonparametric tests with autocorrelated data
 categories:
-- blog
 - stats
+highlight:
+- r
 ---
 
 
