@@ -2,6 +2,7 @@
 layout: post
 title: Use pipeline operators in R
 categories: blog
+tags: [ r, pipeline, pipeR]
 highlight: [ r, fsharp ]
 ---
 

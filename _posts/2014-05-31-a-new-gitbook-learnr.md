@@ -2,6 +2,7 @@
 layout: post
 title: "A new gitbook - learnR"
 categories: blog
+tags: [ r, tutorial ]
 ---
 
 [Gitbook](https://www.gitbook.io/) is rather a relatively new concept on the web. It provides a user-friendly framework for authors to write and produce online books with beautiful illustrations and responsive interactions. It allows authors to write in [Markdown](https://en.wikipedia.org/wiki/Markdown) syntax, which is very easy to learn and use, so that they can focus more on the contents they try to produce than the layout and styles of the contents.

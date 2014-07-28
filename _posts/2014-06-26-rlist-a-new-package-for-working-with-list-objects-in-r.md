@@ -2,6 +2,7 @@
 layout: post
 title: "rlist: a new package for working with list objects in R"
 categories: blog
+tags: [ r, list, rlist, package ]
 highlight: [ r ]
 ---
 

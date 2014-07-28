@@ -2,6 +2,7 @@
 layout: post
 title: A brief introduction to higher order functions in R
 categories: blog
+tags: [ r, "functional programming" ]
 highlight: [ r ]
 ---
 

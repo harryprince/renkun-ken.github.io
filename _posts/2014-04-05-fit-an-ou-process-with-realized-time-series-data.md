@@ -2,6 +2,7 @@
 layout: post
 title: Fit an Ornstein–Uhlenbeck process with discrete time series data
 categories: blog
+tags: [ r, "time series" ]
 highlight: [ r ]
 ---
 

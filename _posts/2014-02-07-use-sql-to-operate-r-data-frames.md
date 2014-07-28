@@ -2,6 +2,7 @@
 layout: post
 title: Use SQL to operate R data frames
 categories: blog
+tags: [ r, data, sql ]
 highlight: [ r, sql ]
 ---
 

@@ -2,6 +2,7 @@
 layout: post
 title: Reshape R data frame from long to wide format
 categories: blog
+tags: [ r, reshape, data ]
 highlight: [ r ]
 ---
 

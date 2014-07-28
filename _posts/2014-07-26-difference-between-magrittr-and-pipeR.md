@@ -2,10 +2,9 @@
 layout: post
 title: Difference between magrittr and pipeR
 categories: blog
+tags: [ r, pipeline, pipeR, magrittr]
 highlight: [ r ]
 ---
-
-
 
 Pipeline is receiving increasing attention in R community these days. It is hard to tell when it starts but more people start to use it since the easy-and-fast [dplyr](https://github.com/hadley/dplyr) package imports the magic operator `%>%` from [magrittr](https://github.com/smbache/magrittr), the pioneer package of pipeline operators for R.
 

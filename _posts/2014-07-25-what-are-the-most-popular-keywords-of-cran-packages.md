@@ -2,6 +2,7 @@
 layout: post
 title: "What are the most popular keywords of CRAN packages?"
 categories: blog
+tags: [ r, scraping ]
 highlight: [ r ]
 ---
 

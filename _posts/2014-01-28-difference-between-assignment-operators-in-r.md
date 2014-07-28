@@ -2,6 +2,7 @@
 layout: post
 title: Difference between assignment operators in R
 categories: blog
+tags: [ r ]
 highlight: [ r ]
 ---
 

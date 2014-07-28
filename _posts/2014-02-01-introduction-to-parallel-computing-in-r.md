@@ -2,6 +2,7 @@
 layout: post
 title: Introduction to parallel computing in R
 categories: blog
+tags: [ r, parallel ]
 highlight: [ r ]
 ---
 

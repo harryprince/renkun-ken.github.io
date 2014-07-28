@@ -2,6 +2,7 @@
 layout: post
 title: Extract information from texts with regular expressions in R
 categories: blog
+tags: [ r, "regular expression" ]
 highlight: [ r ]
 ---
 

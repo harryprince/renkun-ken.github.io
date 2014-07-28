@@ -2,6 +2,7 @@
 layout: post
 title: A principle of writing robust R program
 categories: blog
+tags: [ r ]
 highlight: [ r ]
 ---
 
