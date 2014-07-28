@@ -16,6 +16,8 @@ Before we start, we should take a look at those web pages we are going to deal w
 
 For example, if you are a Firefox user, you can press F12 to show the developer tools. The same shortcut key also applies to Google Chrome and Internet Explorer. An alternative way is to click *Inspect the element* in the context menu of the data cell, which directly locates the element. Fortunately, CRAN pages are quite easy to handle with using XPath, as we previously played with. 
 
+A useful trick for Firefox users: You can turn on the web developer console at the web page you want to parse, and type `$x("xpath")` to try `xpath` and see whether it is able to select the elements you want. Once you figure out the right XPath, you can fill it in the R code.
+
 Now we can get started scraping the pages. First, load the packages we need.
 
 
