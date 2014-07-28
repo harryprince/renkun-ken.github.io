@@ -8,7 +8,7 @@ highlight: [ r ]
 
 
 
-In one of my previous [post](http://renkun.me/blog/2014/07/25/what-are-the-most-popular-keywords-of-cran-packages.html), I demonstrated how we can scrape online data using existing packages. 
+In my previous [post](http://renkun.me/blog/2014/07/25/what-are-the-most-popular-keywords-of-cran-packages.html), I demonstrated how we can scrape online data using existing packages. 
 
 In this post, I will take it a bit further: I will scrape more information of [CRAN packages](http://cran.r-project.org/web/packages/available_packages_by_date.html) since each of them also has a web page like [this](http://cran.r-project.org/web/packages/rlist/). More specifically, I want to build my own database that includes the date, name, title, version, and imports of the packages.
 
