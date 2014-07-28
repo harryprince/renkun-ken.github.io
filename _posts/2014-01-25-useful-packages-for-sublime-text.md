@@ -1,10 +1,8 @@
 ---
 layout: post
 title: Useful packages for Sublime Text
-categories:
-- tool
-highlight:
-- json
+categories: blog
+highlight: [ json ]
 ---
 
 [Sublime Text](http://www.sublimetext.com/) is an extremely powerful text editor. Currently I use [Sublime Text 3](http://www.sublimetext.com/3) and quite enjoy its simplicity and extensibility. In this blog, I would like to introduce some of my favorite packages that leverage my productivity.

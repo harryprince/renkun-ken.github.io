@@ -1,10 +1,8 @@
 ---
 layout: post
 title: A principle of writing robust R program
-categories:
-- r
-highlight:
-- r
+categories: blog
+highlight: [ r ]
 ---
 
 Writing R code can be very easy. It depends on how much you want to achieve with your code and what features you want your code to support.

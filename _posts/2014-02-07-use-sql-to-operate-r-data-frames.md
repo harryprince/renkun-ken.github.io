@@ -1,11 +1,8 @@
 ---
 layout: post
 title: Use SQL to operate R data frames
-categories:
-- r
-highlight:
-- r
-- sql
+categories: blog
+highlight: [ r, sql ]
 ---
 
 In both research and application, we need to manipulate data frames by selecting desired columns, filtering records, transforming and aggregating data. 

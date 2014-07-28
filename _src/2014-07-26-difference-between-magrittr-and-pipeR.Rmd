@@ -1,10 +1,8 @@
 ---
 layout: post
 title: Difference between magrittr and pipeR
-categories:
-- r
-highlight:
-- r
+categories: blog
+highlight: [ r ]
 ---
 
 ```{r knitsetup, echo=FALSE, results='hide', warning=FALSE, message=FALSE, cache=FALSE}
@@ -30,7 +28,7 @@ We can use `%>%` and the *verbs* dplyr provides to quickly transform the data. T
 
 ```{r}
 library(dplyr)
-iris %>% 
+iris %>%
   mutate(Sepal.Size=Sepal.Length*Sepal.Width,
     Petal.Size=Petal.Length*Petal.Width) %>%
   select(Sepal.Size,Petal.Size,Species) %>%
@@ -58,7 +56,7 @@ magrittr is great in that it smartly analyzes the way user tries to use the pipe
 
 For interactive analysis, its smart behavior helps save a lot of time. But for large iteration in which we also want to use pipeline to organize our code, its performance loss may offset the time we have saved.
 
-The design of pipeR is suitable for the situation where we want to trade performance with robustness. In other words, the operators in pipeR are dumb: they don't analyze and find out how you want to pipe an object. They only specialize in single type of piping respectively: 
+The design of pipeR is suitable for the situation where we want to trade performance with robustness. In other words, the operators in pipeR are dumb: they don't analyze and find out how you want to pipe an object. They only specialize in single type of piping respectively:
 
 - `%>>%` only pipes the object to the first argument of the next function.
 - `%:>%` only pipes the object to `.` symbol in the next expression.

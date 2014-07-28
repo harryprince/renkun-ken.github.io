@@ -1,10 +1,8 @@
 ---
 layout: post
 title: Introduction to parallel computing in R
-categories:
-- r
-highlight:
-- r
+categories: blog
+highlight: [ r ]
 ---
 
 For R beginners, `for` loop is an elementary flow-control device that simplifies repeatedly calling functions with different parameters. A possible block of code is like this:

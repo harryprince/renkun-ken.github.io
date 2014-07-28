@@ -1,10 +1,8 @@
 ---
 layout: post
 title: "What are the most popular keywords of CRAN packages?"
-categories:
-- r
-highlight:
-- r
+categories: blog
+highlight: [ r ]
 ---
 
 ```{r knitsetup, echo=FALSE, results='hide', warning=FALSE, message=FALSE, cache=FALSE}
@@ -51,15 +49,15 @@ The following code are written in fluent style with pipeline.
 words <- html[xpath("//tr//td[3]//text()")] %>>%   # select the 3rd column
   list.map( # map each node to ...
     # 1. get the trimmed text in the XML node
-    XML::xmlValue(.,trim = TRUE) %>>% 
+    XML::xmlValue(.,trim = TRUE) %>>%
       # 2. split the text by non-word-letters
-      strsplit("[^a-zA-Z]") %>>% 
+      strsplit("[^a-zA-Z]") %>>%
       # 3. put everything together in vector
-      unlist(use.names = FALSE) %>>% 
+      unlist(use.names = FALSE) %>>%
       # 4. lower all words
-      tolower %>>% 
+      tolower %>>%
       # 5. filter words with more than 3 letters to be meaningful
-      list.filter(nchar(.) > 3L)) %>>% 
+      list.filter(nchar(.) > 3L)) %>>%
   # put everything in a large character vector
   unlist %>>%
   # create a table of word count

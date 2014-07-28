@@ -1,10 +1,8 @@
 ---
 layout: post
 title: Difference between magrittr and pipeR
-categories:
-- r
-highlight:
-- r
+categories: blog
+highlight: [ r ]
 ---
 
 

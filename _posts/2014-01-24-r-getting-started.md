@@ -1,8 +1,7 @@
 ---
 layout: post
 title: "R: Getting Started"
-categories:
-- r
+categories: blog
 ---
 
 R rocks in both academia and industry nowadays. A rapidly increasing number of researchers choose R to be one of their productive tools for data analysis and data visualization. It is partially because the software is totally free and open-source but also because the community behind the stage who contributes to nearly 5000 packages remains growing, which results in an evolving and sustainable ecosystem.

@@ -1,10 +1,8 @@
 ---
 layout: post
 title: Power of nonparametric tests with autocorrelated data
-categories:
-- stats
-highlight:
-- r
+categories: blog
+highlight: [ r ]
 ---
 
 ```{r knitsetup, echo=FALSE, results='hide', warning=FALSE, message=FALSE, cache=FALSE}

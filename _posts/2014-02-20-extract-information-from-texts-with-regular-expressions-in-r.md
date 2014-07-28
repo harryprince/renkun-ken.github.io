@@ -1,10 +1,8 @@
 ---
 layout: post
 title: Extract information from texts with regular expressions in R
-categories:
-- r
-highlight:
-- r
+categories: blog
+highlight: [ r ]
 ---
 
 People love dealing with well-structured data. It costs much less efforts than working with disorganized raw texts.

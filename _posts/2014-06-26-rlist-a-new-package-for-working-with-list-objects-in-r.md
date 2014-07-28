@@ -1,10 +1,8 @@
 ---
 layout: post
 title: "rlist: a new package for working with list objects in R"
-categories:
-- r
-highlight:
-- r
+categories: blog
+highlight: [ r ]
 ---
 
 In recent years, non-relational data have attracted more and more attentions. Roughly speaking, all datasets that are hard to put into a rectangular table with rows and columns are non-relational datasets.

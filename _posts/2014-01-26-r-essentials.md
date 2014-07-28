@@ -1,8 +1,7 @@
 ---
 layout: post
 title: "R: Essentials"
-categories:
-- r
+categories: blog
 ---
 
 It is quite easy to get started with R. The very first step is to download R from the [ official website ](http://www.r-project.org/), and install it. 

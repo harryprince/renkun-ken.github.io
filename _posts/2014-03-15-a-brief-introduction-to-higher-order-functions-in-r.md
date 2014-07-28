@@ -1,10 +1,8 @@
 ---
 layout: post
 title: A brief introduction to higher order functions in R
-categories:
-- r
-highlight:
-- r
+categories: blog
+highlight: [ r ]
 ---
 
 In R, *function* may not be as special as it is in other programming languages; it is regarded as one of the many types and can be passed as an argument to some other `function`. The way we deal with other objects such `list` and `data.frame` definitely applies to `function`. Here is a simple example in which we define two functions and pass them to another function as an argument, respectively.
