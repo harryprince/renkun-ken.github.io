@@ -64,7 +64,7 @@ data <- html[xpath("//tr")] %>>%
   # scrape the individual page for each package
   list.update(html = {
     cat("[",format(Sys.time() - start,format="%s"),"]", .i,
-      format(date,format = "%y-%m-%d"), package,"...\n")
+      format(date,format = "%y-%m-%d"), package ,"\n", sep="\t")
     sprintf(pkgurl, package) %:>%
       content(GET(.),"parsed")
   }) %>>%
@@ -83,8 +83,8 @@ data <- html[xpath("//tr")] %>>%
       vapply(val, character(1L))
   }) %>>%
   
-  # select the fields we need
-  list.select(date, package, title, version, imports, suggests)
+  # remove html field
+  list.update(html = NULL)
 ```
 
 Note that *Imports* and *Suggests* are both vector-valued, which makes the data non-tabular. Therefore, I use `list` to store the data directly. With the assistance of `rlist` package, the data processing with lists is much easier and cleaner.
