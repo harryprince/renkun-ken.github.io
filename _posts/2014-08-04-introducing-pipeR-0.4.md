@@ -16,16 +16,16 @@ In version 0.4, I decide to merge the functionality of all three operators in th
 
 `%>>%` is now able to pipe object to the first-argument of a function name or call, to `.` symbol in an expression, or by lambda expression. Although the functionality is fully merged, its does not bring any ambiguity. The code can be cleaner, easier to understand without having to distinguish various abstract operators, which may relieve some mental burden.
 
-The operator now commits to the principle that the syntax determines how the object is piped. Fortunately, the syntax is a set of very intuitive rules demonstrated by the following table.
+The operator now commits to the principle that the syntax determines how the object is piped. Fortunately, the syntax is a set of very intuitive rules described by the following code demos.
 
-| Usage | As if |
-|-------|-------------|
-| `x %>>% f` | `f(x)` |
-| `x %>>% f(...)` | `f(x,...)` |
-| `x %>>% { f(.) }` | `f(x)` |
-| `x %>>% ( f(.) )` | `f(x)` |
-| `x %>>% (i -> f(i))` | `f(x)` |
-| `x %>>% (i ~ f(i))` | `f(x)` |
+```r
+x %>>% f            # f(x)
+x %>>% f(...)       # f(x,...)
+x %>>% { f(.) }     # f(x)
+x %>>% ( f(.) )     # f(x)
+x %>>% (i -> f(i))  # f(x)
+x %>>% (i ~ f(i))   # f(x)
+```
 
 The rules are best described by the following bullets:
 
@@ -91,12 +91,12 @@ Now the number vector is extracted.
 
 `Pipe` object is mainly designed for light-weight chaining which does not use external operator. Here is a cheetsheet.
 
-| Usage | Description |
-|-------|-------|
-| `Pipe(x)$foo()$bar()` | Build `Pipe` object for chaining |
-| `Pipe(x)$foo()$bar() []` | Extract the final value |
-| `Pipe(x)$fun(expr)` | Pipe to `.` |
-| `Pipe(x)$fun(x -> expr)` | Pipe to `x` |
-| `Pipe(x)$fun(x ~ expr)` | Pipe to `x` |
+```r
+Pipe(x)$foo()$bar()         # Build Pipe object for chaining
+Pipe(x)$foo()$bar() []      # Extract the final value
+Pipe(x)$fun(expr)           # Pipe to .
+Pipe(x)$fun(x -> expr)      # Pipe to x
+Pipe(x)$fun(x ~ expr)       # Pipe to x
+```
 
 If you are annoyed by typing operators with multiple characters, `Pipe` object can be a good choice.
