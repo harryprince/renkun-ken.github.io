@@ -39,7 +39,7 @@ Since the two old operators are deprecated and they will be completely removed i
 
 One thing to mention is that although the functionality is merged, its performance is still 5-8 times faster than magrittr. If you have performance considerations or prefer simple implementation and rules, pipeR is still a good choice.
 
-## `Pipe` object
+## Pipe object
 
 Another interesting thing the version brings is the `Pipe` object. Its idea is simply inspired by how piping works in jQuery and C#'s LINQ. They are both object-based chaining mechanism rather than operator-based that manipulates the evaluation of expressions like in F#.
 
