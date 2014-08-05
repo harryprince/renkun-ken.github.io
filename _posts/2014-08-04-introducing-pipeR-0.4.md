@@ -8,11 +8,11 @@ highlight: [ r ]
 
 
 
-pipeR 0.4 is released! Check out at the [project page](http://renkun.me/pipeR/). In this new version, two things happen. First, `%>>%` handles everything. Second, the introduction of `Pipe` object.
+pipeR 0.4 is released! Check it out at the [project page](http://renkun.me/pipeR/). In this new version, two things happen. First, `%>>%` handles everything. Second, the introduction of `Pipe` object.
 
 ## `%>>%`
 
-In version 0.4, I decide to merge the functionality of all three operators in the previous versions. Only `%>>%` operator remains, and the two other operators are deprecated. But to make the transition smoother, the deprecated operators still works but will send warnings. 
+In version 0.4, I decide to merge the functionality of all three operators in the previous versions. Only `%>>%` operator remains, and the two other operators are deprecated. But to make the transition smoother, the deprecated operators still work but will send warnings. 
 
 `%>>%` is now able to pipe object to the first-argument of a function name or call, to `.` symbol in an expression, or by lambda expression. Although the functionality is fully merged, its does not bring any ambiguity. The code can be cleaner, easier to understand without having to distinguish various abstract operators, which may relieve some mental burden.
 
@@ -72,8 +72,7 @@ Pipe(1:10)$mean()
 ```
 
 ```
-Pipe
-[1] 5.5
+Error: could not find function "Pipe"
 ```
 
 You can see the number result but `Pipe` header indicates that it is still a `Pipe` object rather than the number vector it shows. Sometimes we need the resulted value, and `[]` is defined to extract the value of the `Pipe` object.
@@ -84,7 +83,7 @@ Pipe(1:10)$mean() []
 ```
 
 ```
-[1] 5.5
+Error: could not find function "Pipe"
 ```
 
 Now the number vector is extracted.
