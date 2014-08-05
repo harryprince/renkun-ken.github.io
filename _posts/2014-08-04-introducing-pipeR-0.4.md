@@ -72,7 +72,8 @@ Pipe(1:10)$mean()
 ```
 
 ```
-Error: could not find function "Pipe"
+Pipe
+[1] 5.5
 ```
 
 You can see the number result but `Pipe` header indicates that it is still a `Pipe` object rather than the number vector it shows. Sometimes we need the resulted value, and `[]` is defined to extract the value of the `Pipe` object.
@@ -83,7 +84,7 @@ Pipe(1:10)$mean() []
 ```
 
 ```
-Error: could not find function "Pipe"
+[1] 5.5
 ```
 
 Now the number vector is extracted.
