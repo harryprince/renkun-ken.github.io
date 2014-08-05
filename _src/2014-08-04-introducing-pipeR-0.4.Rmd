@@ -1,0 +1,96 @@
+---
+layout: post
+title: Introducing pipeR 0.4
+categories: blog
+tags: [ r, pipe, pipeR, pipeline, chaining ]
+highlight: [ r ]
+---
+
+```{r knitsetup, echo=FALSE, results='hide', warning=FALSE, message=FALSE, cache=FALSE}
+library(knitr)
+opts_knit$set(base.dir='./', out.format='md')
+opts_chunk$set(prompt=FALSE, comment='', results='markup',
+  fig.path='/assets/images/')
+```
+
+pipeR 0.4 is released! Check out at the [project page](http://renkun.me/pipeR/). In this new version, two things happen. First, `%>>%` handles everything. Second, the introduction of `Pipe` object.
+
+## `%>>%`
+
+In version 0.4, I decide to merge the functionality of all three operators in the previous versions. Only `%>>%` operator remains, and the two other operators are deprecated. But to make the transition smoother, the deprecated operators still works but will send warnings. 
+
+`%>>%` is now able to pipe object to the first-argument of a function name or call, to `.` symbol in an expression, or by lambda expression. Although the functionality is fully merged, its does not bring any ambiguity. The code can be cleaner, easier to understand without having to distinguish various abstract operators, which may relieve some mental burden.
+
+The operator now commits to the principle that the syntax determines how the object is piped. Fortunately, the syntax is a set of very intuitive rules demonstrated by the following table.
+
+| Usage | As if |
+|-------|-------------|
+| `x %>>% f` | `f(x)` |
+| `x %>>% f(...)` | `f(x,...)` |
+| `x %>>% { f(.) }` | `f(x)` |
+| `x %>>% ( f(.) )` | `f(x)` |
+| `x %>>% (i -> f(i))` | `f(x)` |
+| `x %>>% (i ~ f(i))` | `f(x)` |
+
+The rules are best described by the following bullets:
+
+- For function name or call, pipe to the first argument;
+- For braces `{}`, pipe to `.`;
+- For parentheses `()`, pipe to `.` unless a lambda expression is specified.
+
+With this set of rules, you can be clear as you read a chunk of code where this operator appears and know exactly what and how the object is being piped.
+
+Since the two old operators are deprecated and they will be completely removed in the next version, you may have to change some of your code if they are used. Fortunately, the changing will be very easy: Just change all operators to `%>>%` and add `{}` or `()` to the next expression.
+
+One thing to mention is that although the functionality is merged, its performance is still 5-8 times faster than magrittr. If you have performance considerations or prefer simple implementation and rules, pipeR is still a good choice.
+
+## `Pipe` object
+
+Another interesting thing the version brings is the `Pipe` object. Its idea is simply inspired by how piping works in jQuery and C#'s LINQ. They are both object-based chaining mechanism rather than operator-based that manipulates the evaluation of expressions like in F#.
+
+`Pipe` object mimics that kind of piping experience. Consider a task that we need to generate 1000 normally distributed random numbers, take a size-200 sample, take their absolute squares, and draw a scatter plot in red.
+
+Here is the approach using `%>>%`.
+
+```r
+library(pipeR)
+rnorm(1000) %>>%
+  sample(200) %>>%
+  abs %>>%
+  plot(col="red")
+```
+
+Here we got an easier way to do this. The following code uses `Pipe` object created by `Pipe()`.
+
+```r
+Pipe(rnorm(1000))$
+  sample(200)$
+  abs()$
+  plot(col="red")
+```
+
+`Pipe()` creates a `Pipe` object which is essentially an environment in which a `value` is stored. For this type of object, `$` is so defined that it always recognizes the name following as a function and performs first-argument piping, computes a new `value` and store it in the next-level of `Pipe` object. Therefore, you can use `$` to chain commands.
+
+```{r}
+Pipe(1:10)$mean()
+```
+
+You can see the number result but `Pipe` header indicates that it is still a `Pipe` object rather than the number vector it shows. Sometimes we need the resulted value, and `[]` is defined to extract the value of the `Pipe` object.
+
+```{r}
+Pipe(1:10)$mean() []
+```
+
+Now the number vector is extracted.
+
+`Pipe` object is mainly designed for light-weight chaining which does not use external operator. Here is a cheetsheet.
+
+| Usage | Description |
+|-------|-------|
+| `Pipe(x)$foo()$bar()` | Build `Pipe` object for chaining |
+| `Pipe(x)$foo()$bar() []` | Extract the final value |
+| `Pipe(x)$fun(expr)` | Pipe to `.` |
+| `Pipe(x)$fun(x -> expr)` | Pipe to `x` |
+| `Pipe(x)$fun(x ~ expr)` | Pipe to `x` |
+
+If you are annoyed by typing operators with multiple characters, `Pipe` object can be a good choice.
