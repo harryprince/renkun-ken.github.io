@@ -76,7 +76,7 @@ Pipe
 [1] 5.5
 ```
 
-You can see the number result but `Pipe` header indicates that it is still a `Pipe` object rather than the number vector it shows. Sometimes we need the resulted value, and `[]` is defined to extract the value of the `Pipe` object.
+You can see the number result but `Pipe` header indicates that it is still a `Pipe` object rather than the numeric vector it shows. Sometimes we need the resulted value, and `[]` is defined to extract the value of the `Pipe` object.
 
 
 ```r
@@ -87,7 +87,7 @@ Pipe(1:10)$mean() []
 [1] 5.5
 ```
 
-Now the number vector is extracted.
+Now the numeric vector is extracted.
 
 `Pipe` object is mainly designed for light-weight chaining which does not use external operator. Here is a cheetsheet.
 
