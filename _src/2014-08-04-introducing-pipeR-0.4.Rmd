@@ -48,7 +48,7 @@ One thing to mention is that although the functionality is merged, its performan
 
 Another interesting thing the version brings is the `Pipe` object. Its idea is simply inspired by how piping works in jQuery and C#'s LINQ. They are both object-based chaining mechanism rather than operator-based that manipulates the evaluation of expressions like in F#.
 
-`Pipe` object mimics that kind of piping experience. Consider a task that we need to generate 1000 normally distributed random numbers, take a size-200 sample, take their absolute squares, and draw a scatter plot in red.
+`Pipe` object mimics that kind of piping experience. Consider a task that we need to generate 1000 normally distributed random numbers, take a size-200 sample, take their absolute values, and draw a scatter plot in red.
 
 Here is the approach using `%>>%`.
 
