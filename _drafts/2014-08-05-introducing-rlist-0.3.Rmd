@@ -1,0 +1,15 @@
+---
+layout: post
+title: Introducing rlist 0.3
+categories: blog
+tags: [ r, list, rlist, chaining, pipeline ]
+highlight: [ r ]
+---
+
+```{r knitsetup, echo=FALSE, results='hide', warning=FALSE, message=FALSE, cache=FALSE}
+library(knitr)
+opts_knit$set(base.dir='./', out.format='md')
+opts_chunk$set(prompt=FALSE, comment='', results='markup',
+  fig.path='/assets/images/')
+```
+

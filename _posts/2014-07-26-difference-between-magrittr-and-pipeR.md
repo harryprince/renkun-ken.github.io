@@ -117,3 +117,4 @@ So here is my recommendation:
 - If you care about performance issues, feel sure about the type of piping to use, or want to use pipeline in massive or nested loops, or want to avoid ambiguity in reading since `.` can be meaningful within some functions like `do()`, pipeR operators can be good choices.
 
 Since the two packages use different set of symbols, they are fully compatible with each other. You may choose according to your needs and considerations, and finally, enjoy piping!
+

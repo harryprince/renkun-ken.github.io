@@ -6,6 +6,8 @@ tags: [ r, list, rlist, package ]
 highlight: [ r ]
 ---
 
+
+
 In recent years, non-relational data have attracted more and more attentions. Roughly speaking, all datasets that are hard to put into a rectangular table with rows and columns are non-relational datasets.
 
 The following data is a very simple non-relational dataset in JSON format. The dataset contains some information of three programmers, each of whom has a name, an age, some interests, and a list of programming languages with the number of years used.
@@ -59,7 +61,7 @@ It takes efforts to fit such a dataset into several relational data tables. If w
 
 One of the most popular solution for processing non-relational data structures is MongoDB, which uses JSON/BSON format to store such kind of data and use similar syntax to query the dataset.
 
-In R, list object is powerful enough to represent a wide range of non-relational datasets like this. In the recent month, I have been working on a new package called [rlist](http://renkun.me/rlist) hosted by [GitHub](https://github.com/renkun-ken/rlist). It is a set of tools for working with list objects. 
+In R, list object is powerful enough to represent a wide range of non-relational datasets like this. In the recent month, I have been working on a new package called [rlist](http://renkun.me/rlist) hosted by [GitHub](https://github.com/renkun-ken/rlist). It is a set of tools for working with list objects.
 
 This package has two main goals:
 
@@ -87,7 +89,7 @@ The package provides a wide range of functions to work with list objects. Suppos
 
 ```r
 library(rlist)
-devs <- 
+devs <-
   list(
     p1=list(name="Ken",age=24,
       interest=c("reading","music","movies"),

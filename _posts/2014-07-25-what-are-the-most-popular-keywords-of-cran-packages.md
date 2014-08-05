@@ -116,3 +116,4 @@ words <- html[xpath("//tr//td[3]//text()")] %>>%   # select the 3rd column
 The work is done, in 12 lines, in only a little more than 2 seconds!
 
 If you want to know more about these packages, please visit their project pages. Hope you can do more amazing things in your work.
+
