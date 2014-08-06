@@ -61,7 +61,7 @@ people %>>%
   list.mapv(name, use.names = FALSE)
 ```
 
-If I change the target value to `24.0` and set `exactly = TRUE` then there would be no remaining results since ages are integers in the data but the condition is to find a numeric value. 
+If I set `exactly = TRUE` then there would be no remaining results since ages are integers in the data but the condition is a numeric value (not exactly an integer parsed in R) unless it is written as `24L`. 
 
 ```{r}
 people %>>%
