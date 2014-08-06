@@ -15,7 +15,7 @@ opts_chunk$set(prompt=FALSE, comment='', results='markup',
 
 rlist 0.3 is released! This package now provides a wide range of functions for dealing with list objects. It can be especially useful when they are used to store non-tabular data.
 
-Two notable features are added in this version. First, `list.search` and several comparer functions are added in support of fuzzy filtering and searching. Second, `List` object is added to provide object-based, light-weight chaining operation for list objects.
+Two notable features are added in this version. First, `list.search` and `equal()` are added in support of fuzzy filtering and searching. Second, `List` object is added to provide object-based, light-weight chaining operation for list objects.
 
 In the examples, I will use both [rlist](http://renkun.me/rlist/) and [pipeR](http://renkun.me/pipeR/) package for easier coding. If you are not yet familiar with either of them, please visit the project pages first.
 
