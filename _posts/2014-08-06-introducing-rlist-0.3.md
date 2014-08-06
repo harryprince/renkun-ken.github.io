@@ -205,7 +205,7 @@ $Ashley$friends
 ```
 
 
-## List environment for light-weight chaining
+## List environment
 
 Another feature this version introduces is the `List` object which is designed for light-weight chaining. If you have read my post about [pipeR 0.4](http://renkun.me/blog/2014/08/04/introducing-pipeR-0.4.html), you will be familiar with the feature I'm going to talk about.
 
