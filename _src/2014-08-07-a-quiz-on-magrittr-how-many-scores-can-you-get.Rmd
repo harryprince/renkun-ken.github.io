@@ -1,0 +1,220 @@
+---
+layout: post
+title: A quiz on magrittr: How many scores can you get?
+categories: blog
+tags: [ r, magrittr, pipeR, pipeline ]
+highlight: [ r ]
+---
+
+```{r knitsetup, echo=FALSE, results='hide', warning=FALSE, message=FALSE, cache=FALSE}
+library(knitr)
+opts_knit$set(base.dir='./', out.format='md')
+opts_chunk$set(prompt=FALSE, comment='', results='markup',
+  fig.path='/assets/images/')
+```
+
+Here is a quiz on magrittr and you may check if you are really good at using it.
+
+Consider the following function:
+
+```{r}
+f <- function(x,y = "nothing") {
+  cat("x = ", x, "\n")
+  cat("y = ", y, "\n")
+}
+```
+
+Now answer what is going to be evaluated for the following expressions:
+
+```{r}
+library(magrittr)
+# (0) Example
+# only pipe to . like f(1:10)
+1:10 %>% f(.) 
+```
+
+```r
+# (1)
+1:10 %>% f(1)
+```
+
+```r
+# (2)
+1:10 %>% f(.,.)
+```
+
+```r
+# (3)
+1:10 %>% f(length(.)) 
+```
+
+```r
+# (4)
+1:10 %>% f(length(.),length(.)) 
+```
+
+```r
+# (5)
+1:10 %>% f(c(.,1),c(1,.))
+```
+
+Are you getting confused? Can you predict what is going to happen? If you feel quite confident or only a blink will tell you how the code will be run, just go ahead.
+
+Consider the following function:
+
+```{r}
+g <- function(x,y,z = "z") {
+  cat("x = ", x, "\n")
+  cat("y = ", y, "\n")
+  cat("z = ", z, "\n")
+}
+```
+
+Predict what is going to happen.
+
+```r
+1:10 %>% g(.,2)
+```
+
+```r
+1:10 %>% g(1,length(.))
+```
+
+```r
+1:10 %>% g(1,(.))
+```
+
+```r
+1:10 %>% g(1,.)
+```
+
+```r
+1:10 %>% g(mean(.),length(.))
+```
+
+You may type or just copy-paste them in your console and see whether you get correct answers. If you are correct for all, you are really good at using it!
+
+Now let's see what happens with the code above. For `f(x,y)`:
+
+```{r}
+f <- function(x,y = "nothing") {
+  cat("x = ", x, "\n")
+  cat("y = ", y, "\n")
+}
+```
+
+```{r}
+# only pipe to . so results in error
+# as if (1:10)
+1:10 %>% f(.) 
+```
+
+```{r}
+# pipe to first argument
+# as if f(1:10,1)
+1:10 %>% f(1) 
+```
+
+```{r}
+# only pipe to .
+# as if f(1:10,1:10)
+1:10 %>% f(.,.) 
+```
+
+```{r}
+# pipe to first argument and .
+# as if f(1:10,length(1:10))
+1:10 %>% f(length(.)) 
+```
+
+```{r}
+# try to pipe to first-argument but does not work
+# as if f(1:10,length(1:10),length(1:10))
+1:10 %>% f(length(.),length(.)) 
+```
+
+```{r}
+# try to pipe to first-argument but does not work
+# as if f(1:10,c(1:10,1),c(1,1:10))
+1:10 %>% f(c(.,1),c(1,.))
+```
+
+Then consider what happens with `g(x,y,z)`
+
+```{r}
+g <- function(x,y,z = "z") {
+  cat("x = ", x, "\n")
+  cat("y = ", y, "\n")
+  cat("z = ", z, "\n")
+}
+```
+
+```{r}
+# pipe to .
+# as if g(1:10,2)
+1:10 %>% g(.,2)
+```
+
+```{r}
+# pipe to first argument and .
+# as if g(1:10,1,length(1:10))
+1:10 %>% g(1,length(.))
+```
+
+```{r}
+# pipe to first argument and .
+# as if g(1:10,1,(1:10))
+1:10 %>% g(1,(.))
+```
+
+```{r}
+# pipe to .
+# as if g(1,1:10)
+1:10 %>% g(1,.)
+```
+
+How many scores do you get? What is you don't want to pipe the object to the first argument but simply want to evaluate `f(mean(1:10),length(1:10))`?
+
+```{r}
+# pipe to first argument
+# as if g(1:10,mean(1:10),length(1:10))
+1:10 %>% g(mean(.),length(.))
+```
+
+A solution is to use `lambda()` or `l()` enclosed.
+
+```{r}
+1:10 %>% (l(. ~ g(mean(.),length(.))))
+```
+
+In many cases, `%>%` fits the situation but sometimes it may not do as what we believe it will. And that is why pipeR is created. It gives user the full control of how the object will be piped, then all the problems above simply do not exist. You will feel pretty intuitive and confident to use the operator `%>>%` because it behaves based on a set of simple and intuitive rules:
+
+1. Give it a function call or name, it will always pipe to the first argument
+2. If that's not what you want, enclose your expression within `{}` or `()`
+3. In `()` you can also name the symbol by yourself like `(x -> f(x))`.
+
+Therefore, with pipeR the code won't be ambiguous anymore, and you can read and write pipelines that are easy to read and understand what exactly is going to happen.
+
+Here are some examples:
+
+1. Always pipe to first argument and . give a function name or call
+```{r}
+library(pipeR)
+1:10 %>>% f(1)
+```
+
+2. If you only want to pipe to ., enclose your exprssion.
+
+```{r}
+1:10 %>>% ( f(.) )
+```
+
+```{r}
+1:10 %>>% ( f(.,.) )
+```
+
+```{r}
+1:10 %>>% ( f(mean(.), length(.)) )
+```
+
+You will feel that you have full power and confidence to control its behavior and read/write code that brings no ambiguity. See the [project page](http://renkun.me/pipeR/) of pipeR.
