@@ -203,7 +203,7 @@ library(pipeR)
 1:10 %>>% f(1)
 ```
 
-2. If you only want to pipe to ., enclose your exprssion.
+2. If you only want to pipe to ., enclose your expression.
 
 ```{r}
 1:10 %>>% ( f(.) )
