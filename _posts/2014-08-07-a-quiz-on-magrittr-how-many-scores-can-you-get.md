@@ -240,7 +240,7 @@ y =  1 2 3 4 5 6 7 8 9 10
 z =  z 
 ```
 
-How many scores do you get? What is you don't want to pipe the object to the first argument but simply want to evaluate `f(mean(1:10),length(1:10))`?
+How many scores do you get? What if you don't want to pipe the object to the first argument but simply want to evaluate `f(mean(1:10),length(1:10))`?
 
 
 ```r

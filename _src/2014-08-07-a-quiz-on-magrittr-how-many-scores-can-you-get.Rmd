@@ -173,7 +173,7 @@ g <- function(x,y,z = "z") {
 1:10 %>% g(1,.)
 ```
 
-How many scores do you get? What is you don't want to pipe the object to the first argument but simply want to evaluate `f(mean(1:10),length(1:10))`?
+How many scores do you get? What if you don't want to pipe the object to the first argument but simply want to evaluate `f(mean(1:10),length(1:10))`?
 
 ```{r}
 # pipe to first argument
