@@ -1,0 +1,195 @@
+---
+layout: post
+title: Difference between magrittr and pipeR
+categories: blog
+tags: [ r, pipeline, pipeR, magrittr]
+highlight: [ r ]
+---
+
+```{r knitsetup, echo=FALSE, results='hide', warning=FALSE, message=FALSE, cache=FALSE}
+library(knitr)
+opts_knit$set(base.dir='./', out.format='md')
+opts_chunk$set(prompt=FALSE, comment='', results='markup',
+  fig.path='/assets/images/')
+```
+
+(This post is rewritten to adapt to the latest release of pipeR)
+
+Pipeline is receiving increasing attention in R community these days. It is hard to tell when it begins but more people start to use it since the easy-and-fast [dplyr](https://github.com/hadley/dplyr) package imports the magic operator `%>%` from [magrittr](https://github.com/smbache/magrittr), the pioneer package of pipeline operators for R.
+
+The two packages co-work well: dplyr works with data frames by a set of basic operations, and magrittr's `%>%` operator chains the commands together and makes data manipulation process more readable and consistence with our intuition.
+
+## The magic operator
+
+A little example will demonstrate how easy it is to work with dplyr and `%>%`.
+
+Suppose we are working with the built-in data frame `iris`.
+
+```{r}
+head(iris)
+```
+
+We can use `%>%` and the *verbs* dplyr provides to quickly transform the data. The following example runs to find out the top 3 largest items in terms of total sizes of sepal and petal for each species.
+
+```{r}
+library(dplyr)
+iris %>%
+  mutate(Sepal.Size=Sepal.Length*Sepal.Width,
+    Petal.Size=Petal.Length*Petal.Width) %>%
+  select(Sepal.Size,Petal.Size,Species) %>%
+  group_by(Species) %>%
+  do(arrange(.,desc(Sepal.Size+Petal.Size)) %>% head(3))
+```
+
+Thanks for magrittr's `%>%`, the code is quite easy to read because all verbs are chained in a pipeline.
+
+In fact, `%>%` is more general than merely working with `dplyr`. For an expression like `x %>% f(...)`, the operator analyzes the structure of `f(...)` and then decides whether to evaluate `f(x,...)` or simply `f(...)` with `. = x`.
+
+`dplyr` verb-functions are pipe-friendly in design: their data argument is always the first one, and each time we do some data manipulation, the result is always the new data. This design fundamentally allows pipeline chaining in an easy way. `%>%` just pipes the previous result to the first argument of the next function call, that is, the expression 
+
+```r
+x %>% plot(col="red")
+```
+
+will be transformed to `plot(x,col="red")`.
+
+In some cases, the object should not be piped to the first argument of the next function but somewhere else. For example,
+
+```r
+mtcars %>% lm(mpg ~ ., data = .)
+```
+
+where the first argument of `lm()` function is `formula =` which is given explicitly. What we really want is to pipe `mtcars` to `data =`. Here `%>%`  is smart enough to detect a naked `.` in the arguments so it decides not to pipe `mtcars` to the first argument but to `.` as a conventional symbol used to represent the object being piped, in this case, `mtcars`.
+
+The piping rule is largely subject to experience but works for many cases.
+
+## Can you predict it?
+
+However, if you are not consciously aware of the rules how `%>%` decides what to do, you may feel confused in some cases. For example, suppose we have the following function:
+
+```{r}
+f <- function(x, y, z = "nothing") {
+  cat("x =", x, "\n")
+  cat("y =", y, "\n")
+  cat("z =", z, "\n")
+}
+```
+
+Suppose one of your fellows using the latest development version of `magrittr` throws some code to you like 
+
+```r
+1:10 %>% f(mean(.), median(.)) 
+```
+
+how would you know what it really means, or how it will be evaluated, or most importantly, **what your fellow means**? Will `%>%` pipe `rnorm(100)` to the first argument of `f()` as if evaluating `f(1:10, mean(1:10), median(1:10))`, or simply pipe to `.` as if `f(mean(1:10),median(1:10))`? If you are not familiar with the rules, you won't be confidently predict what is going to happen. A bigger problem is: **You can hardly know for sure what your fellow really wants. If things go wrong, it's hard to identify if it is wrong HERE.**
+
+If a large code file is full of somehow ambiguous notions like this, it would certainly be a nightmare to find bugs because it is quite possible that some objects are mistakenly piped or not piped to first argument of a function with default values that do not lead to errors.
+
+Some might feel that the decision rule of `%>%` is quite simple: roughly speaking, if any naked `.` is detected in the argument of the function call, only pipe to the first argument; otherwise pipe to `.` symbol (without nested `.` for CRAN version). The rule facilitates the following code:
+
+```{r}
+1:10 %>% f(1, .)
+```
+
+According to the rule, it is very clear that it will not pipe `1:10` to the first argument but to `.`. But if some day we find that the second argument as index should start from zero for some reason, and we need the numbers to minus one, an ordinary user would naturally change `.` to `.-1` like
+
+```{r}
+1:10 %>% f(1, .-1)
+```
+
+And things go wrong. For the current CRAN version, it simply does not support nested `.` like `.-1` which is in essence `"-"(.,1)`. For the latest development version, it suddenly changes behavior from dot piping to first-argument piping, which probably surprises users without much experience.
+
+```r
+# latest development version
+> 1:10 %>% f(1, .-1)
+x = 1 2 3 4 5 6 7 8 9 10 
+y = 1 
+z = 0 1 2 3 4 5 6 7 8 9 
+```
+
+It is all because the heuristic rules try to smartly decide how to pipe the object. I must admit that for data frame or list manipulation, it works fine and is quite robust because few people would do things like `df - 1` or when `df` is a data frame or list. But in broader usage where elementary objects like atomic vectors count in, the rules become unfounded and the behavior can be suddenly unpredictable. 
+
+That is why I designed pipeR package which is based on a different set of principles and rules that avoids all the above problems.
+
+## pipeR: Principles and rules
+
+pipeR is built on the a very simple principle: an operator should be as simple, predictable, and definite as possible. In other words, a user should take a look and quickly know what it means and does, and its behavior should in most cases brings least surprise.
+
+Therefore, pipeR's operator `%>>%` follows the following rules to decide which type of piping it performs:
+
+Rule 1. Pipe to first argument and `.` whenever a function name or call follows.
+
+```{r}
+library(pipeR)
+1:10 %>>% f(1, .)   # f(1:10, 1, 1:10)
+1:10 %>>% f(1, .-1) # f(1:10, 1, 1:10 - 1)
+```
+
+Rule 2. Pipe to `.` if the followed expression is enclosed within `{}` or `()` unless in the form `(x -> f(x))` or `(x ~ f(x))`.
+
+```{r}
+1:10 %>>% ( f(min(.),max(.)) )        # f(min(1:10),max(1:10))
+1:10 %>>% (x -> f(min(x),max(x)))     # f(min(1:10),max(1:10))
+```
+
+Now if you see a function following `%>>%` it must be first-argument piping; if you see `%>>% { ... }` or `%>>% ( ... )` it must not pipe to first argument but `.` or by lambda expression. The consequences are:
+
+- You have full power to control how it works
+- The code will never be ambiguous if the rules are followed
+- Everything becomes natural and its behavior won't suddenly change
+
+Recall the example we need to supply some indices.
+
+```{r}
+1:10 %>>% ( f(1, .) )       # f(1, 1:10)
+```
+
+Now you know that the expression is enclosed to avoid first argument piping. And you can change `.` for any reason and don't have to worry that it may change the behavior.
+
+```{r}
+1:10 %>>% ( f(1, .-1) )     # f(1, 1:10 - 1)
+```
+
+
+## Performance
+
+`%>%` is quite smart and robust in many cases, its cost is performance. You won't be able to identify any performance issue in simple step-by-step tasks, but if it is used in nested loops, the performance can be very low.
+
+Suppose we are solving such a problem: Conduct an experiment for 100000 times. Each time we take a random sample from lower letters (a-z) with replacement, paste these letters and see whether it equals the string *rstats*. The following code is a simple and intuitive solution.
+
+```{r}
+system.time({
+  lapply(1:100000, function(i) {
+    sample(letters,6,replace = T) %>%
+      paste(collapse = "") %>%
+      "=="("rstats")
+  })
+})
+```
+
+It took rather a long time to go through the iterations.
+
+For interactive analysis, its smart behavior helps save a lot of time. But for large iteration in which we also want to use pipeline to organize our code, its performance loss may offset the time we have saved.
+
+Since `%>>%` in pipeR follows very simple rules, it does not try to detect dots or something, which helps a lot in performance. Here is a demonstration that `%>%` are replaced with `%>>%` in the previous example.
+
+```{r}
+system.time({
+  lapply(1:100000, function(i) {
+    sample(letters,6,replace = T) %>>%
+      paste(collapse = "") %>>%
+      "=="("rstats")
+  })
+})
+```
+
+The performance improvement is significant, especially in nested loops. Just imagine how much time will be saved in a real-world statistical simulation that might take more times. But the cost is that you have to follow the two rules to build the pipeline with `%>>%` because it does not smartly detect what you try to do.
+
+## Conclusion
+
+So here is my recommendation:
+
+- If you do interactive analysis mainly about data frame manipulation and plotting and do not care about the performance, `%>%` is a good choice. It also provides aliases of basic functions to make piping more friendly.
+- If you care about ambiguity issues, performance issues, feel sure about the type of piping to use,  want to use pipeline in massive or nested loops, `%>>%` can serve your purpose.
+
+Since the two packages use different set of symbols, they are fully compatible with each other. You may choose according to your needs and considerations.
