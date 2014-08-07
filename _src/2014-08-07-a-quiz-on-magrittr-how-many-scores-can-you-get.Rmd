@@ -197,14 +197,14 @@ Therefore, with pipeR the code won't be ambiguous anymore, and you can read and 
 
 Here are some examples:
 
-1. Always pipe to first argument and . give a function name or call
+1. Always pipe to first argument and `.` give a function name or call
 
 ```{r}
 library(pipeR)
 1:10 %>>% f(1)
 ```
 
-2. If you only want to pipe to ., enclose your expression.
+2. If you only want to pipe to `.`, enclose your expression.
 
 ```{r}
 1:10 %>>% ( f(.) )
