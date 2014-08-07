@@ -3,12 +3,12 @@ layout: post
 title: "A quiz on magrittr: How many scores can you get?"
 categories: blog
 tags: [ r, magrittr, pipeR, pipeline ]
-highlight: [ r ]
+highlight: [ r ] 
 ---
 
 
 
-Here is a quiz on magrittr and you may check if you are really good at using it.
+Here is a quiz on magrittr and you may check if you are really good at using it. Since the CRAN version currently does not support nested `.`, it won't be interesting to make a quiz on that version. All the following examples are using the latest development version on [GitHub](https://github.com/smbache/magrittr). You can do the same test with the CRAN version if you like.
 
 Consider the following function:
 
@@ -52,7 +52,7 @@ y =  nothing
 
 ```r
 # (4)
-1:10 %>% f(length(.),length(.)) 
+1:10 %>% f(min(.),max(.))
 ```
 
 ```r
@@ -109,7 +109,7 @@ f <- function(x,y = "nothing") {
 
 
 ```r
-# only pipe to . so results in error
+# only pipe to .
 # as if (1:10)
 1:10 %>% f(.) 
 ```
@@ -158,18 +158,18 @@ y =  10
 
 ```r
 # try to pipe to first-argument but does not work
-# as if f(1:10,length(1:10),length(1:10))
-1:10 %>% f(length(.),length(.)) 
+# as if f(1:10,min(.),max(.))
+1:10 %>% f(min(.),max(.))
 ```
 
 ```
-Error: unused argument (length(.))
+Error: unused argument (max(.))
 ```
 
 
 ```r
 # try to pipe to first-argument but does not work
-# as if f(1:10,c(1:10,1),c(1,1:10))
+# as if f(1:10,c(.,1),c(1,.))
 1:10 %>% f(c(.,1),c(1,.))
 ```
 
@@ -216,7 +216,7 @@ z =  10
 
 
 ```r
-# pipe to first argument and .
+# pipe to first argument
 # as if g(1:10,1,(1:10))
 1:10 %>% g(1,(.))
 ```
