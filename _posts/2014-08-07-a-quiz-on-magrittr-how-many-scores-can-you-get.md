@@ -240,7 +240,7 @@ y =  1 2 3 4 5 6 7 8 9 10
 z =  z 
 ```
 
-How many scores do you get? What if you don't want to pipe the object to the first argument but simply want to evaluate `f(mean(1:10),length(1:10))`?
+How many scores do you get? What if you don't want to pipe the object to the first argument but simply want to evaluate `g(mean(1:10),length(1:10))`?
 
 
 ```r
@@ -280,6 +280,7 @@ Here are some examples:
 
 1. Always pipe to first argument and . give a function name or call
 
+
 ```r
 library(pipeR)
 1:10 %>>% f(1)
@@ -315,6 +316,18 @@ y =  1 2 3 4 5 6 7 8 9 10
 
 ```r
 1:10 %>>% ( f(mean(.), length(.)) )
+```
+
+```
+x =  5.5 
+y =  10 
+```
+
+3. Or you can name the symbol by yourself
+
+
+```r
+1:10 %>>% (x -> f(mean(x),length(x)))
 ```
 
 ```

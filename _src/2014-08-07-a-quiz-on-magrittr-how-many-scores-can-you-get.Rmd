@@ -173,7 +173,7 @@ g <- function(x,y,z = "z") {
 1:10 %>% g(1,.)
 ```
 
-How many scores do you get? What if you don't want to pipe the object to the first argument but simply want to evaluate `f(mean(1:10),length(1:10))`?
+How many scores do you get? What if you don't want to pipe the object to the first argument but simply want to evaluate `g(mean(1:10),length(1:10))`?
 
 ```{r}
 # pipe to first argument
@@ -198,6 +198,7 @@ Therefore, with pipeR the code won't be ambiguous anymore, and you can read and 
 Here are some examples:
 
 1. Always pipe to first argument and . give a function name or call
+
 ```{r}
 library(pipeR)
 1:10 %>>% f(1)
@@ -215,6 +216,12 @@ library(pipeR)
 
 ```{r}
 1:10 %>>% ( f(mean(.), length(.)) )
+```
+
+3. Or you can name the symbol by yourself
+
+```{r}
+1:10 %>>% (x -> f(mean(x),length(x)))
 ```
 
 You will feel that you have full power and confidence to control its behavior and read/write code that brings no ambiguity. See the [project page](http://renkun.me/pipeR/) of pipeR.
