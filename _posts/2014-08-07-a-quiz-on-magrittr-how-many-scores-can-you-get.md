@@ -278,7 +278,7 @@ Therefore, with pipeR the code won't be ambiguous anymore, and you can read and 
 
 Here are some examples:
 
-1. Pipe to first argument and `.`? Give a function name or call.
+- Pipe to first argument and `.`? Give a function name or call.
 
 
 ```r
@@ -291,7 +291,7 @@ x =  1 2 3 4 5 6 7 8 9 10
 y =  1 
 ```
 
-2. Only want to pipe to `.`? Enclose your expression.
+- Only want to pipe to `.`? Enclose your expression.
 
 
 ```r
@@ -323,7 +323,7 @@ x =  5.5
 y =  10 
 ```
 
-3. Name the symbol by yourself? Use lambda expression.
+- Name the symbol by yourself? Use lambda expression.
 
 
 ```r
