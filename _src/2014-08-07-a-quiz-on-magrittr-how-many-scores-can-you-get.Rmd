@@ -1,6 +1,6 @@
 ---
 layout: post
-title: A quiz on magrittr: How many scores can you get?
+title: "A quiz on magrittr: How many scores can you get?"
 categories: blog
 tags: [ r, magrittr, pipeR, pipeline ]
 highlight: [ r ]
