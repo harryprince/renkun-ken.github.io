@@ -166,7 +166,7 @@ z = 0 1 2 3 4 5 6 7 8 9
 
 It is all because the heuristic rules try to smartly decide how to pipe the object. I must admit that for data frame or list manipulation, it works fine and is quite robust because few people would do things like `df - 1` or when `df` is a data frame or list. But in broader usage where elementary objects like atomic vectors count in, the rules become unfounded and the behavior can be suddenly unpredictable. 
 
-That is why I designed pipeR package which is based on a different set of principles and rules that avoids all the above problems.
+That is why I based pipeR package on a different set of principles and rules that avoids all the above problems at the first place.
 
 ## pipeR: Principles and rules
 
@@ -198,7 +198,7 @@ y = 1
 z = 0 1 2 3 4 5 6 7 8 9 
 ```
 
-Rule 2. Pipe to `.` if the followed expression is enclosed within `{}` or `()` unless in the form `(x -> f(x))` or `(x ~ f(x))`.
+Rule 2. Pipe to `.` if the followed expression is enclosed within `{}` or `()`, or to user-defined symbol if written like `(x -> f(x))` or `(x ~ f(x))`.
 
 
 ```r
@@ -273,7 +273,7 @@ system.time({
 
 ```
    user  system elapsed 
-  26.74    0.03   27.04 
+  27.71    0.01   27.84 
 ```
 
 It took rather a long time to go through the iterations.
@@ -295,7 +295,7 @@ system.time({
 
 ```
    user  system elapsed 
-   3.37    0.00    3.37 
+   3.55    0.00    3.55 
 ```
 
 The performance improvement is significant, especially in nested loops. Just imagine how much time will be saved in a real-world statistical simulation that might take more times. But the cost is that you have to follow the two rules to build the pipeline with `%>>%` because it does not smartly detect what you try to do.

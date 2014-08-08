@@ -109,7 +109,7 @@ z = 0 1 2 3 4 5 6 7 8 9
 
 It is all because the heuristic rules try to smartly decide how to pipe the object. I must admit that for data frame or list manipulation, it works fine and is quite robust because few people would do things like `df - 1` or when `df` is a data frame or list. But in broader usage where elementary objects like atomic vectors count in, the rules become unfounded and the behavior can be suddenly unpredictable. 
 
-That is why I designed pipeR package which is based on a different set of principles and rules that avoids all the above problems.
+That is why I based pipeR package on a different set of principles and rules that avoids all the above problems at the first place.
 
 ## pipeR: Principles and rules
 
@@ -125,7 +125,7 @@ library(pipeR)
 1:10 %>>% f(1, .-1) # f(1:10, 1, 1:10 - 1)
 ```
 
-Rule 2. Pipe to `.` if the followed expression is enclosed within `{}` or `()` unless in the form `(x -> f(x))` or `(x ~ f(x))`.
+Rule 2. Pipe to `.` if the followed expression is enclosed within `{}` or `()`, or to user-defined symbol if written like `(x -> f(x))` or `(x ~ f(x))`.
 
 ```{r}
 1:10 %>>% ( f(min(.),max(.)) )        # f(min(1:10),max(1:10))
