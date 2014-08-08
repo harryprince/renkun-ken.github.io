@@ -170,7 +170,7 @@ That is why I designed pipeR package which is based on a different set of princi
 
 ## pipeR: Principles and rules
 
-pipeR is built on the a very simple principle: an operator should be as simple, predictable, and definite as possible. In other words, a user should take a look and quickly know what it means and does, and its behavior should in most cases brings least surprise.
+pipeR is built on the a very simple principle: an operator should be as simple, predictable, and definite as possible. In other words, a user should take a look and quickly know what it means and does, and its behavior should in most cases bring least surprise.
 
 Therefore, pipeR's operator `%>>%` follows the following rules to decide which type of piping it performs:
 
@@ -273,7 +273,7 @@ system.time({
 
 ```
    user  system elapsed 
-  26.53    0.03   27.09 
+  26.74    0.03   27.04 
 ```
 
 It took rather a long time to go through the iterations.
@@ -295,7 +295,7 @@ system.time({
 
 ```
    user  system elapsed 
-   3.59    0.00    3.62 
+   3.37    0.00    3.37 
 ```
 
 The performance improvement is significant, especially in nested loops. Just imagine how much time will be saved in a real-world statistical simulation that might take more times. But the cost is that you have to follow the two rules to build the pipeline with `%>>%` because it does not smartly detect what you try to do.

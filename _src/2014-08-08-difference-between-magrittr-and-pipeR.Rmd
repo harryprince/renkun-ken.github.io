@@ -113,7 +113,7 @@ That is why I designed pipeR package which is based on a different set of princi
 
 ## pipeR: Principles and rules
 
-pipeR is built on the a very simple principle: an operator should be as simple, predictable, and definite as possible. In other words, a user should take a look and quickly know what it means and does, and its behavior should in most cases brings least surprise.
+pipeR is built on the a very simple principle: an operator should be as simple, predictable, and definite as possible. In other words, a user should take a look and quickly know what it means and does, and its behavior should in most cases bring least surprise.
 
 Therefore, pipeR's operator `%>>%` follows the following rules to decide which type of piping it performs:
 
