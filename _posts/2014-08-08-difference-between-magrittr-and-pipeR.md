@@ -121,7 +121,7 @@ Suppose one of your fellows using the latest development version of `magrittr` t
 1:10 %>% f(mean(.), median(.)) 
 ```
 
-how would you know what it really means, or how it will be evaluated, or most importantly, **what your fellow means**? Will `%>%` pipe `rnorm(100)` to the first argument of `f()` as if evaluating `f(1:10, mean(1:10), median(1:10))`, or simply pipe to `.` as if `f(mean(1:10),median(1:10))`? If you are not familiar with the rules, you won't be confidently predict what is going to happen. A bigger problem is: **You can hardly know for sure what your fellow really wants. If things go wrong, it's hard to identify if it is wrong HERE.**
+how would you know what it really means, or how it will be evaluated, or most importantly, **what your fellow means**? Will `%>%` pipe `1:10` to the first argument of `f()` as if evaluating `f(1:10, mean(1:10), median(1:10))`, or simply pipe to `.` as if `f(mean(1:10),median(1:10))`? If you are not familiar with the rules, you won't be confidently predict what is going to happen. A bigger problem is: **You can hardly know for sure what your fellow really wants. If things go wrong, it's hard to identify if it is wrong HERE.**
 
 If a large code file is full of somehow ambiguous notions like this, it would certainly be a nightmare to find bugs because it is quite possible that some objects are mistakenly piped or not piped to first argument of a function with default values that do not lead to errors.
 
