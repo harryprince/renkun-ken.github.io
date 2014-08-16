@@ -258,3 +258,16 @@ $value : numeric
  [1] 16.25 18.82 12.80 13.98 17.63 16.69 12.05 13.58 13.59 16.90
 ```
 
+## Conclusion
+
+While `%>%` and `%>>%` implements operator-based pipeline like in F#, `Pipe()` function implements an object-like pipeline mechanism like the implementation in jQuery in JavaScript and LINQ in C#.
+
+It dynamically creates closures as if the object had the child function to operate with it. It is more light-weight and easier to type than operator approach especially in R which requires user-defined operators take a name enclosed by `% %`.
+
+If you like this idea, just install pipeR with
+
+```r
+install.packages("pipeR")
+```
+
+and try `Pipe()`.
