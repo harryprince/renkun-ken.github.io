@@ -56,12 +56,12 @@ In this version, `equal()` are added to support logical and fuzzy filtering and 
 Find names of people whose age is 24.
 
 ```{r}
-people %>>% 
+people %>>%
   list.filter(equal(24,age)) %>>%
   list.mapv(name, use.names = FALSE)
 ```
 
-If I set `exactly = TRUE` then there would be no remaining results since ages are integers in the data but the condition is a numeric value (not exactly an integer parsed in R) unless it is written as `24L`. 
+If I set `exactly = TRUE` then there would be no remaining results since ages are integers in the data but the condition is a numeric value (not exactly an integer parsed in R) unless it is written as `24L`.
 
 ```{r}
 people %>>%
@@ -74,17 +74,17 @@ In most cases, however, we don't need the target value and original data are exa
 
 Sometimes, we need to filter values that includes certain values, here we can specify `include = TRUE`.
 
-Note that `exactly`, `equal`, and `include` are logical comparers. In addition to them, fuzzy comparers are also supported. They are `pattern` and `dist` arguments. 
+Note that `exactly`, `equal`, and `include` are logical comparers. In addition to them, fuzzy comparers are also supported. They are `pattern` and `dist` arguments.
 
 If `pattern = TRUE` then `x` serves as a regular expression pattern and `equal()` tests whether the value matches it. For example, find all people whose interests include something that ends with "ing".
 
 ```{r}
-people %>>% 
+people %>>%
   list.filter(any(equal("ing$",interests,pattern = TRUE))) %>>%
   list.mapv(name, use.names = FALSE)
 ```
 
-If `dist = ` is given a number, then it will tolerate all values with a maximum string distance implemented in [stringdist package](http://cran.r-project.org/web/packages/stringdist/). 
+If `dist = ` is given a number, then it will tolerate all values with a maximum string distance implemented in [stringdist package](http://cran.r-project.org/web/packages/stringdist/).
 
 Note that in `interests`, `movie` and `movies` both appear but mean the same thing. To tolerate that difference and regard them as equal, specify a string distance in `equal()`. Now find those who like movies.
 
@@ -98,7 +98,7 @@ If there are more records in `people` and more variants or typos in the term "mo
 
 ## Fuzzy searching
 
-In the new version of rlist, `list.search()` is added to support searching in a list. This function does nothing special but evaluates an expression recursively using `rapply`. 
+In the new version of rlist, `list.search()` is added to support searching in a list. This function does nothing special but evaluates an expression recursively using `rapply`.
 
 For example, we search all character vectors which include "James".
 
