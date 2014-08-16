@@ -112,13 +112,12 @@ Pipe(mtcars)$
 
 `Pipe()` works with ggvis.
 
-```{r,message=FALSE}
+```r
 library(ggvis)
 Pipe(mtcars)$
   ggvis(~ mpg, ~ wt)$
   layer_points()$
-  layer_smooths()$
-  value
+  layer_smooths()
 ```
 
 `Pipe()` also works with rlist.
