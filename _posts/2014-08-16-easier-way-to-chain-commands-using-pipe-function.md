@@ -258,6 +258,10 @@ $value : numeric
  [1] 16.25 18.82 12.80 13.98 17.63 16.69 12.05 13.58 13.59 16.90
 ```
 
+## Performance
+
+The overhead of `Pipe()` function is very low. Its performance is very close to `%>>%`. In intensive iterations, using `Pipe()` may also save some time. For more details, see pipeR's vignette [Performance](http://cran.r-project.org/web/packages/pipeR/vignettes/Performance.html).
+
 ## Conclusion
 
 While `%>%` and `%>>%` implements operator-based pipeline like in F#, `Pipe()` function implements an object-like pipeline mechanism like the implementation in jQuery in JavaScript and LINQ in C#.
