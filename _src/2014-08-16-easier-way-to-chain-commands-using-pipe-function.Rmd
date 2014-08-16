@@ -1,0 +1,184 @@
+---
+layout: post
+title: Easier way to chain commands using Pipe function
+categories: blog
+tags: [ r, pipeR, Pipe ]
+highlight: [ r ]
+---
+
+```{r knitsetup, echo=FALSE, results='hide', warning=FALSE, message=FALSE, cache=FALSE}
+set.seed(100)
+library(knitr)
+opts_knit$set(base.dir='./', out.format='md')
+opts_chunk$set(prompt=FALSE, comment='', results='markup',
+  fig.path='/assets/images/')
+library(pipeR)
+```
+
+In pipeR 0.4 version, one of the new features is `Pipe()` function. The function basically creates a Pipe object that allows command chaining with `$`, and thus makes it easier to perform operations in pipeline without any external operator.
+
+In this post, I will introduce how to use this function and some basic knowledge about how it works. But before that, I would like to make clear that you don't have to learn a whole new thing if you are familiar with magrittr's `%>%` operator or pipeR's `%>>%` operator. If you are not, you can go ahead without hesitation. After all, the tools are made to be easier to work with.
+
+## Introducing `Pipe()`
+
+Consider a task we plot the log differences of 100 normally distributed random numbers with mean 10. The traditional code can be written as 
+
+```r
+plot(diff(log(rnorm(100, mean = 10))),col = "red")
+```
+
+magrittr's `%>%` and pipeR's `%>>%` are designed to chain these commands in a human readable way. With `%>%` operator, the code can be restructured like
+
+```r
+library(magrittr)
+rnorm(100, mean = 10) %>%
+  log %>%
+  diff %>%
+  plot(col="red")
+```
+
+In this case, `%>%` and `%>>%` are interchangeable which produce similar output. The operator does nothing special but hack the expression so that the left-hand side object is inserted into the function call on the right-hand side of the operator.
+
+```r
+library(pipeR)
+rnorm(100, mean = 10) %>>%
+  log %>>%
+  diff %>>%
+  plot(col="red")
+```
+
+From the examples above, it seems that `%>%` and `%>>%` are exactly the same. In fact, they are not. I wrote an article *[Difference between magrittr and pipeR](http://renkun.me/blog/2014/08/08/difference-between-magrittr-and-pipeR.html)* to explain their differences.
+
+Both operators can solve the problem above by building a pipeline to avoid deeply nested code and make the operations readable. But is there an even easier way? The answer is Yes.
+
+With `Pipe()` function introduced in pipeR 0.4, the code can be more simplified, even without any weird user-defined operator that has to be enclosed by `% %`. It goes like
+
+```r
+library(pipeR)
+Pipe(rnorm(100, mean = 10))$
+  log()$
+  diff()$
+  plot(col="red")
+```
+
+You may have noticed that the pipeline starts with `Pipe()` function. This function basically creates a Pipe object which, in essence, is an environment which stores a value and whose `$` is specially defined to perform first-argument piping. If a function name that  follows `$` is called, then the resulted value will be stored in the next-level Pipe object. 
+
+```{r}
+Pipe(c(1,2,3))$
+  mean()
+```
+
+Note that the output indicates that the result is not a simple numeric vector but *a box* that contains that numeric vector as an element `$value`. 
+
+To see the difference, try to run
+
+```{r}
+Pipe(c(1,2,3))$mean() + 1
+```
+
+If the pipeline returns a numeric value `2`, it should add 1 and return 3 as a result. Clearly, this is not the case. It is the box containing the value that allows `$` to perform more levels of piping. In fact, The pipeline construction does not stop until the value is extracted by `$value`.
+
+```{r}
+Pipe(c(1,2,3))$
+  mean()$
+  value
+```
+
+or simply `[]` as a shortcut.
+
+```{r}
+Pipe(c(1,2,3))$
+  mean() []
+```
+
+Once the value is extracted from the box (or Pipe environment), the pipeline is ended with the stored value returned. 
+
+Having known these features, `Pipe()` function can be used to work with pipeline-friendly packages such as [dplyr](https://github.com/hadley/dplyr), [ggvis](http://ggvis.rstudio.com/), and [rlist](http://renkun.me/rlist/). Here are some simple examples. 
+
+`Pipe()` works with dplyr functions.
+
+```{r,message=FALSE}
+library(dplyr)
+Pipe(mtcars)$
+  filter(mpg <= mean(mpg))$
+  select(mpg, cyl, wt)$
+  group_by(cyl)$
+  do(Pipe(.)$
+      arrange(wt)$
+      head(1)$
+      value)$
+  value
+```
+
+`Pipe()` works with ggvis.
+
+```{r,message=FALSE}
+library(ggvis)
+Pipe(mtcars)$
+  ggvis(~ mpg, ~ wt)$
+  layer_points()$
+  layer_smooths()$
+  value
+```
+
+`Pipe()` also works with rlist.
+
+```{r,message=FALSE}
+library(rlist)
+Pipe(1:10)$
+  list.filter(x -> x <= 5)$
+  list.mapv(letters[.])
+```
+
+## More features
+
+As I mentioned in *[Introducing pipeR 0.4](http://renkun.me/blog/2014/08/04/introducing-pipeR-0.4.html)*, pipeR's `%>>%` operator is able to 
+
+* Pipe left-hand side object as the first argument to the right-hand side function name or call;
+* Pipe as `.` within `{}` or by lambda expression within `()`;
+* Extract element when followed by a name enclosed by `()` (new feature in version 0.4-1). 
+
+The same features are supported with `.()` function used with `Pipe()`. For example,
+
+```{r}
+Pipe(mtcars)$
+  .(lm(mpg ~ cyl + wt, data = .))$
+  summary()$
+  .(coefficients)
+```
+
+You can regard the above code as evaluated in the following steps:
+
+```r
+m <- lm(mpg ~ cyl + wt, data = mtcars)
+msum <- summary(m)
+msum$coefficients
+```
+
+A noteworthy difference between the results produced by the two cases is that the final result produced by `Pipe()` is still stored in the Pipe object (the box), and you can extract the value or build longer pipeline with it. For example,
+
+```{r}
+model <- Pipe(mtcars)$
+  .(lm(mpg ~ cyl + wt, data = .))
+```
+
+Then `model` is a Pipe object in which the value is a linear model and can be used for further piping.
+
+```{r}
+model$summary()$.(z$r.squared)
+model$predict(list(cyl = 6, wt = 2.9))
+```
+
+Another interesting feature of Pipe object is about creating easy-to-use closures (roughly, a function created runtime within a context). For example, we can create a closure that generates 10 uniformly distributed numbers but its range is undecided.
+
+```{r}
+rnd <- Pipe(10)$runif
+```
+
+A function `rnd(...)` has been created an it can be used to generate 10 uniformly distributed random numbers with different settings of range.
+
+```{r}
+rnd(min = 1, max = 2)
+rnd(min = 10, max = 20)
+```
+
