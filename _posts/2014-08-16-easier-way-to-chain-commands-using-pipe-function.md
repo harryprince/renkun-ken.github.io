@@ -208,11 +208,13 @@ Then `model` is a Pipe object in which the value is a linear model and can be us
 
 
 ```r
-model$summary()$.(z$r.squared)
+model$summary()$.(r.squared)
 ```
 
 ```
-Error: object 'z' not found
+$value : numeric 
+------
+[1] 0.8302
 ```
 
 ```r

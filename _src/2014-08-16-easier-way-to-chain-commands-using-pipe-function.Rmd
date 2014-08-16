@@ -164,7 +164,7 @@ model <- Pipe(mtcars)$
 Then `model` is a Pipe object in which the value is a linear model and can be used for further piping.
 
 ```{r}
-model$summary()$.(z$r.squared)
+model$summary()$.(r.squared)
 model$predict(list(cyl = 6, wt = 2.9))
 ```
 
