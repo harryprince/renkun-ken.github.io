@@ -23,10 +23,10 @@ Recently, I had an interesting discussion on how to add side effect piping to my
 
 First, let me announce that the new version of pipeR supports side effect piping by the following syntax:
 
-```r
+```{r}
 mtcars %>>%
   (~ cat("columns:",ncol(.),"\n")) %>>%    # only for side effect
-  summary()
+  head(3)
 ```
 
 The side-effect syntax can be best described as **Just add `~` to the left side of lambda expression to make it side effect**.
