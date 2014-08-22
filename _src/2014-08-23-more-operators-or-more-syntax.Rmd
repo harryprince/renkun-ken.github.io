@@ -17,7 +17,7 @@ library(pipeR)
 
 The motivation of pipeline operator is to make code more readable. In many cases, it indeed better organizes code so that the logic is presented in human-readable fluent style. In other cases, however, such operators can make things worse.
 
-Recently, I had an interesting discussion on how to add side effect piping to my pipeR functionality (in this [issue](https://github.com/renkun-ken/pipeR/issues/30)), just like the tee operator (`%T>%`) does. [Linlin Yan](https://github.com/yanlinlin82) initially suggested to introduce a new **operator** to handle this while my opinion is to introduce a new **syntax**. I'm not sure if a new operator is a good idea when there are too many, but at least he pointed out the central problem:
+Recently, I had an interesting discussion on how to add side effect piping to pipeR functionality (in this [issue](https://github.com/renkun-ken/pipeR/issues/30)), just like the tee operator (`%T>%`) does. [Linlin Yan](https://github.com/yanlinlin82) initially suggested to introduce a new **operator** to handle this while my opinion is to introduce a new **syntax**. I'm not sure if a new operator is a good idea when there are too many, but at least he pointed out the central problem:
 
 *More operators or more syntax?*
 
