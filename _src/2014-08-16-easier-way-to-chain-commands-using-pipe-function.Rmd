@@ -125,7 +125,7 @@ Pipe(mtcars)$
 ```{r,message=FALSE}
 library(rlist)
 Pipe(1:10)$
-  list.filter(x -> x <= 5)$
+  list.filter(x ~ x <= 5)$
   list.mapv(letters[.])
 ```
 
