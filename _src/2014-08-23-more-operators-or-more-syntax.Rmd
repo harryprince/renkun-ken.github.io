@@ -38,7 +38,7 @@ mtcars %>>%
 
 The side-effect syntax can be best described as **Just add `~` to the left side of lambda expression to make it side effect**.
 
-As I mentioned in beginning, pipelined expressions are not necessarily human-readable. Let me show you why, with the side effect piping examples.
+As I mentioned in the beginning, pipelined expressions are not necessarily human-readable. Let me show you why, with the side effect piping examples.
 
 Suppose we are dealing with some example data like `mtcars`. We can use forward piping mechanism to construct a pipeline to process the data from the beginning to the end. This time we need to do some intermediate work that should not interrupt the pipeline. In practice, the work can often be logging and printing so that we can make sure the data and pipeline works correctly.
 
@@ -104,6 +104,10 @@ mtcars %>>%
   (coefficients)
 ```
 
-With `(~ expr)` you can do anything you want without breaking the pipeline. With `(? expr)`, you can ask anything you want to know without breaking the pipeline. And I believe the new syntax is carefully designed so that you don't have to carry heavy burden when you review the code where too many different small operators appear in the end of each line.
+Why the design? I should say that the pipeline operator is a meta function that transforms workflows. And the modifier to its functionality should deserve meta-level syntax to distinguish from user input. That's why I choose `(~ expr)` because it looks like side effect, `(? expr)` because it looks like a question. After all, the syntax should be intuitve and easily distinguishable to better represent ideas and better for eye-reading. And I don't define two functions to do the work because they mix the level and meta-level operations.
+
+In a word, with `(~ expr)` you can do anything you want without breaking the pipeline. With `(? expr)`, you can ask anything you want to know without breaking the pipeline. And I believe the new syntax is carefully designed so that you don't have to carry heavy burden when you review the code where too many different small operators appear in the end of each line.
+
+The design of syntax If the high-level operation is done by function, it won't help distinguish
 
 Pipeline is not necessarily readable especially when too many operators are involved, but with carefully designed syntax, it becomes much easier to write readable code.
