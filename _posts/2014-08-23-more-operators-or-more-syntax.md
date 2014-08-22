@@ -1,19 +1,12 @@
 ---
 layout: post
-title: "More operators or more syntax?""
+title: "More operators or more syntax?"
 categories: blog
 tags: [ r, pipeR, Pipe, magrittr, pipe, pipeline ]
 highlight: [ r ]
 ---
 
-```{r knitsetup, echo=FALSE, results='hide', warning=FALSE, message=FALSE, cache=FALSE}
-set.seed(100)
-library(knitr)
-opts_knit$set(base.dir='./', out.format='md')
-opts_chunk$set(prompt=FALSE, comment='', results='markup',
-  fig.path='/assets/images/')
-library(pipeR)
-```
+
 
 The motivation of pipeline operator is to make code more readable. In many cases, it indeed better organizes code so that the logic is presented in human-readable fluent style. In other cases, however, such operators can make things worse.
 
@@ -42,7 +35,8 @@ magrittr's solution to side-effect piping is another operator, `%T>%`, which doe
 
 Here's an example with the latest dev version:
 
-```{r}
+
+```r
 library(magrittr)
 mtcars %T>%
   (l(. ~ cat("data:",ncol(.),"columns\n"))) %>%
@@ -56,6 +50,18 @@ mtcars %T>%
   (l(coe ~ coe[-1,1]))
 ```
 
+```
+data: 11 columns
+qualified rows: 28 
+coefficients: matrix 
+significants: 3 
+```
+
+```
+        cyl        disp          wt 
+-1.94573939  0.01270474 -3.05552146 
+```
+
 The example involves `%>%`, `%T>%` and `%$%` in one pipeline. Some of the lines do real work that influences the next input value, some are evaluated only for side effect, and the rest is extracting element from previous list.
 
 If I want to understand the code, I must examine it line by line and for each line I must look from the first letter to the last operator to make sure I remember how this particular result will be dealt with. 
@@ -64,7 +70,8 @@ If I'm not familiar with the code, and I only take a glimpse of it, I would defi
 
 Here's the alternative implementation with pipeR's operator and syntax.
 
-```{r}
+
+```r
 library(pipeR)
 mtcars %>>%
   (~ cat("data:",ncol(.),"columns\n")) %>>%
@@ -78,6 +85,18 @@ mtcars %>>%
   (coe ~ coe[-1,1])
 ```
 
+```
+data: 11 columns
+qualified rows: 28 
+coefficients: matrix 
+significants: 3 
+```
+
+```
+        cyl        disp          wt 
+-1.94573939  0.01270474 -3.05552146 
+```
+
 You may find that all lines end with `%>>%`, which means there's only one operator that is put to work and you don't have to care about it any more.
 The other thing is you can clearly distinguish the side-effect expressions from the working ones that transform the data to the next stage, because all side effect starts with `~`.
 
@@ -87,7 +106,8 @@ In fact, in the latest version of pipeR, a new and pretty interesting syntax is 
 
 With this new syntax, the previous example can start like this:
 
-```{r}
+
+```r
 mtcars %>>%
   (? ncol(.)) %>>%
   subset(mpg >= quantile(mpg, 0.05) & mpg <= quantile(mpg,0.95)) %>>%
@@ -95,6 +115,21 @@ mtcars %>>%
   lm(formula = mpg ~ cyl + disp + wt) %>>%
   summary %>>%
   (coefficients)
+```
+
+```
+? ncol(.)
+[1] 11
+? nrow(.)
+[1] 28
+```
+
+```
+               Estimate  Std. Error   t value     Pr(>|t|)
+(Intercept) 38.71180800 2.273665885 17.026164 6.674394e-15
+cyl         -1.94573939 0.539423500 -3.607072 1.412530e-03
+disp         0.01270474 0.009908378  1.282223 2.120122e-01
+wt          -3.05552146 0.860716677 -3.549974 1.627839e-03
 ```
 
 With `(~ expr)` you can do anything you want without breaking the pipeline. With `(? expr)`, you can ask anything you want to know without breaking the pipeline. And I believe the new syntax is carefully designed so that you don't have to carry heavy burden when you review the code where too many different small operators appear in the end of each line.
