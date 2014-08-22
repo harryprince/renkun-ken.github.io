@@ -21,7 +21,14 @@ Recently, I had an interesting discussion on how to add side effect piping to my
 
 *More operators or more syntax?*
 
-First, let me announce that the new version of pipeR supports side effect piping by the following syntax:
+First, let me announce that the new version of pipeR supports element extraction by 
+
+```{r}
+x <- list(a=1,b=2)
+x %>>% (a) # as if x[["a"]]
+```
+
+as well as side effect piping by the following syntax:
 
 ```{r}
 mtcars %>>%
