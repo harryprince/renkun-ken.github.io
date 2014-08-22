@@ -90,7 +90,7 @@ The example involves `%>%`, `%T>%` and `%$%` in one pipeline. Some of the lines 
 
 If I want to understand the code, I must examine it line by line and for each line I must look from the first letter to the last operator to make sure I remember how this particular result will be dealt with. 
 
-If I'm not familiar with the code, and I only take a glimpse of it, I would definitely not catch the important lines, nor could I quickly know the input for a given line without carefully back-looking at the operator before that line or several lines. You can randomly pick a line and try to quickly understand its input and how it will run, you would probably find it brain consuming. Maybe the above is poorly implemented but it is quite unreadable to me.
+If I'm not familiar with the code, and I only take a glimpse of it, I would definitely not catch the important lines, nor could I quickly know the input for a given line without carefully back-looking at the operator before that line or several lines. You can randomly pick a line and try to quickly understand its input and how it will run, you would probably find it brain consuming. Maybe the above example is poorly implemented but it is quite unreadable to me.
 
 Here's the alternative implementation with pipeR's operator and syntax.
 
@@ -126,7 +126,7 @@ The other thing is you can clearly distinguish the side-effect expressions from 
 
 If I ask you the input of a random line, you must be able to quickly figure it out by back scanning until one line that does not start from `~`. In fact, all syntax design in pipeR are carefully introduced so that you can quickly figure out the main branch of piping by overlooking the side branches when necessary.
 
-In fact, in the latest version of pipeR, a new and pretty interesting syntax is introduced as light-weight side-effect: `(? expr)`. It simply prints out the value of `expr` and return the input value.
+In fact, in the latest version of pipeR, a new and pretty interesting syntax is introduced as light-weight side-effect: `(? expr)`. It simply prints out the value of `expr` and returns the input value.
 
 With this new syntax, the previous example can start like this:
 
