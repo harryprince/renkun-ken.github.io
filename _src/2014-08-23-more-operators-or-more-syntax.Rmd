@@ -108,6 +108,6 @@ Why the design? I should say that the pipeline operator is a meta function that 
 
 In a word, with `(~ expr)` you can do anything you want without breaking the pipeline. With `(? expr)`, you can ask anything you want to know without breaking the pipeline. And I believe the new syntax is carefully designed so that you don't have to carry heavy burden when you review the code where too many different small operators appear in the end of each line.
 
-The design of syntax If the high-level operation is done by function, it won't help distinguish
+Finally, what maximizes the readability of the code is that **each line determines what happens by themselves, not by the operator in the end of the previous line** and that **you can find out the work of each line by looking at starting letters, not the ending operators**.
 
-Pipeline is not necessarily readable especially when too many operators are involved, but with carefully designed syntax, it becomes much easier to write readable code.
+Therefore, pipeline is not necessarily readable especially when too many operators are involved, but with carefully designed syntax, it becomes much easier to write readable code.
