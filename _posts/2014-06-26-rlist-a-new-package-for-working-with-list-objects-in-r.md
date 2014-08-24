@@ -336,7 +336,7 @@ p3 Penny 1       4
 
 ### Lambda expression
 
-Most functions in this package supports lambda expressions like `x ~ f(x)` or `x -> f(x)` where `x` refers to the list member itself. Otherwise, `.` will by default be used to represent it.
+Most functions in this package supports lambda expressions like `x ~ f(x)`  where `x` refers to the list member itself. Otherwise, `.` will by default be used to represent it.
 
 
 ```r
@@ -371,7 +371,7 @@ $c
 
 ```r
 nums %>>%
-  list.filter(x -> mean(x)>=3)
+  list.filter(x ~ mean(x)>=3)
 ```
 
 ```
