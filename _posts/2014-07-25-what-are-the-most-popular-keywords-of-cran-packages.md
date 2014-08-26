@@ -8,7 +8,7 @@ highlight: [ r ]
 
 
 
-A large proportion of R's power should be attributed to the enormous amount of extension packages. Most of the packages are hosted on [CRAN](http://cran.r-project.org).
+A large proportion of R's power should be attributed to the enormous amount of extension packages. Many packages are published to [CRAN](http://cran.r-project.org).
 
 These packages cover a wide range of fields. In this post, I'll show you how to use R to scrap the titles of all CRAN packages from the [web page](http://cran.r-project.org/web/packages/available_packages_by_date.html) and find out which keywords are the most popular.
 
