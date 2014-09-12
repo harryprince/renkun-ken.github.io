@@ -6,7 +6,7 @@ tags: [ r, scraping ]
 highlight: [ r ]
 ---
 
-
+*(This article is adapted to the latest version of rvest package.)*
 
 A large proportion of R's power should be attributed to the enormous amount of extension packages. Many packages are published to [CRAN](http://cran.r-project.org).
 
@@ -45,7 +45,9 @@ The following code are written in fluent style with pipeline.
 
 
 ```r
-words <- html[xpath("//tr//td[3]//text()")] %>>%   # select the 3rd column
+words <- html %>>% 
+  html_node("//tr//td[3]//text()", xpath = TRUE) %>>% 
+  # select the 3rd column 
   list.map( # map each node to ...
     # 1. get the trimmed text in the XML node
     XML::xmlValue(.,trim = TRUE) %>>% 

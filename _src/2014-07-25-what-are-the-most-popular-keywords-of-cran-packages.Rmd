@@ -13,6 +13,8 @@ opts_chunk$set(prompt=FALSE, comment='', results='markup',
   fig.path='/assets/images/')
 ```
 
+*(This article is adapted to the latest version of rvest package.)*
+
 A large proportion of R's power should be attributed to the enormous amount of extension packages. Many packages are published to [CRAN](http://cran.r-project.org).
 
 These packages cover a wide range of fields. In this post, I'll show you how to use R to scrap the titles of all CRAN packages from the [web page](http://cran.r-project.org/web/packages/available_packages_by_date.html) and find out which keywords are the most popular.
@@ -47,7 +49,9 @@ Now `html` is a parsed HTML document object that is well structured and is ready
 The following code are written in fluent style with pipeline.
 
 ```{r}
-words <- html[xpath("//tr//td[3]//text()")] %>>%   # select the 3rd column
+words <- html %>>% 
+  html_node("//tr//td[3]//text()", xpath = TRUE) %>>% 
+  # select the 3rd column
   list.map( # map each node to ...
     # 1. get the trimmed text in the XML node
     XML::xmlValue(.,trim = TRUE) %>>%

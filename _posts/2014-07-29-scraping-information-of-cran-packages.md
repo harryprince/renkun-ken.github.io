@@ -6,7 +6,7 @@ tags: [ r, scraping, CRAN, pipeline ]
 highlight: [ r ]
 ---
 
-
+*(This article is adapted to the latest version of rvest package.)*
 
 In my previous [post](http://renkun.me/blog/2014/07/25/what-are-the-most-popular-keywords-of-cran-packages.html), I demonstrated how we can scrape online data using existing packages. 
 
@@ -48,13 +48,15 @@ val <- XML::xmlValue
 start <- Sys.time()
 
 # start scraping!
-data <- html[xpath("//tr")] %>>%
+data <- html %>>%
+  html_node("//tr", xpath = TRUE) %>>%
   list.skip(1) %>>%
-  list.map(row ->
+  list.map(row ~
       # xpath tip: use "|" to select multiple nodes at the same time
-      row[xpath("td[1]//text() | td[2]//a//text() | td[3]//text()")] %>>%
-      lapply(val, trim = TRUE) %>>%
-      setNames(c("date","package","title"))) %>>%
+      row %>>%
+        html_node("td[1]//text() | td[2]//a//text() | td[3]//text()") %>>%
+        lapply(val, trim = TRUE) %>>%
+        setNames(c("date","package","title"))) %>>%
   
   # the table is ready, do some cleaning work
   list.update(date=as.Date(date)) %>>%
@@ -74,13 +76,16 @@ data <- html[xpath("//tr")] %>>%
   # we can extract detailed information
   # make good use of XPath: it can filter and select at the same time
   list.update(version = {
-    html["//tr[td[1]='Version:']//td[2]//text()"] %>>%
+    html %>>%
+      html_node("//tr[td[1]='Version:']//td[2]//text()", xpath = TRUE) %>>%
       vapply(val, character(1L))
   }, imports = {
-    html["//tr[td[1]='Imports:']//td[2]//a//text()"] %>>%
+    html %>>%
+      html_node("//tr[td[1]='Imports:']//td[2]//a//text()", xpath = TRUE) %>>%
       vapply(val, character(1L))
   }, suggests = {
-    html["//tr[td[1]='Suggests:']//td[2]//a//text()"] %>>%
+    html %>>%
+      html_node("//tr[td[1]='Suggests:']//td[2]//a//text()", xpath = TRUE) %>>%
       vapply(val, character(1L))
   }) %>>%
   
