@@ -30,7 +30,6 @@ A useful trick for Firefox users: You can turn on the web developer console at t
 Now we can get started scraping the pages. First, load the packages we need.
 
 ```{r}
-library(httr)
 library(rvest)
 library(rlist)
 library(pipeR)
@@ -41,26 +40,23 @@ Then we scrape and parse the [web page of the long table](http://cran.r-project.
 The following code shows how I do it with pipeline.
 
 ```{r}
-# first, scrape the table
+# first, set urls
 url <- "http://cran.r-project.org/web/packages/available_packages_by_date.html"
 pkgurl <- "http://cran.r-project.org/web/packages/%s/index.html"
-html <- content(GET(url),"parsed")
-
-# for easier value extraction, give it an alias
-val <- XML::xmlValue
+page <- html(url)
 
 # set a start time so that we know how long it takes later
 start <- Sys.time()
 
 # start scraping!
-data <- html %>>%
+data <- page %>>%
   html_node("//tr", xpath = TRUE) %>>%
   list.skip(1) %>>%
   list.map(row ~
       # xpath tip: use "|" to select multiple nodes at the same time
       row %>>%
-        html_node("td[1]//text() | td[2]//a//text() | td[3]//text()") %>>%
-        lapply(val, trim = TRUE) %>>%
+        html_node("td[1]//text() | td[2]//a//text() | td[3]//text()", xpath = TRUE) %>>%
+        html_text(trim = TRUE) %>>%
         setNames(c("date","package","title"))) %>>%
   
   # the table is ready, do some cleaning work
@@ -81,17 +77,17 @@ data <- html %>>%
   # we can extract detailed information
   # make good use of XPath: it can filter and select at the same time
   list.update(version = {
-    html %>>%
+    page %>>%
       html_node("//tr[td[1]='Version:']//td[2]//text()", xpath = TRUE) %>>%
-      vapply(val, character(1L))
+      html_text
   }, imports = {
-    html %>>%
+    page %>>%
       html_node("//tr[td[1]='Imports:']//td[2]//a//text()", xpath = TRUE) %>>%
-      vapply(val, character(1L))
+      html_text
   }, suggests = {
-    html %>>%
+    page %>>%
       html_node("//tr[td[1]='Suggests:']//td[2]//a//text()", xpath = TRUE) %>>%
-      vapply(val, character(1L))
+      html_text
   }) %>>%
   
   # remove html field

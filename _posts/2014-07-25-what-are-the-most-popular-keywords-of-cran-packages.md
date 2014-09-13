@@ -16,7 +16,6 @@ To minimize the efforts, we try best to avoid reinventing the wheels and get som
 
 Here is our toolbox that is useful in this task:
 
-- [`httr`](https://github.com/hadley/httr): Download and parse web pages
 - [`rvest`](https://github.com/hadley/rvest): Scrape from the web page by selector
 - [`rlist`](http://renkun.me/rlist): Quickly perform mapping and filtering in functional style
 - [`pipeR`](http://renkun.me/pipeR): Pipe all operations at high performance
@@ -25,7 +24,6 @@ First, we equip our R environment with these tools.
 
 
 ```r
-library(httr)
 library(rvest)
 library(rlist)
 library(pipeR)
@@ -36,37 +34,37 @@ Then we download and parse the web page.
 
 ```r
 url <- "http://cran.r-project.org/web/packages/available_packages_by_date.html"
-html <- content(GET(url),"parsed")
+page <- html(url)
 ```
 
-Now `html` is a parsed HTML document object that is well structured and is ready to query. Note that we need to get the texts in the third column of the table. Here we use [XPath](https://en.wikipedia.org/wiki/XPath) to locate the information we want. Or you can use [CSS](http://www.w3.org/TR/CSS2/selector.html) selector to do the same work.
+Now `page` is a parsed HTML document object that is well structured and is ready to query. Note that we need to get the texts in the third column of the table. Here we use [XPath](https://en.wikipedia.org/wiki/XPath) to locate the information we want. Or you can use [CSS](http://www.w3.org/TR/CSS2/selector.html) selector to do the same work.
 
 The following code are written in fluent style with pipeline.
 
 
 ```r
-words <- html %>>% 
+words <- page %>>%
   html_node("//tr//td[3]//text()", xpath = TRUE) %>>% 
-  # select the 3rd column 
+  # select the 3rd column
   list.map( # map each node to ...
     # 1. get the trimmed text in the XML node
-    XML::xmlValue(.,trim = TRUE) %>>% 
+      XML::xmlValue(.) %>>%
       # 2. split the text by non-word-letters
-      strsplit("[^a-zA-Z]") %>>% 
+      strsplit("[^a-zA-Z]") %>>%
       # 3. put everything together in vector
-      unlist(use.names = FALSE) %>>% 
+      unlist(use.names = FALSE) %>>%
       # 4. lower all words
-      tolower %>>% 
+      tolower %>>%
       # 5. filter words with more than 3 letters to be meaningful
-      list.filter(nchar(.) > 3L)) %>>% 
+      list.filter(nchar(.) > 3L)) %>>%
   # put everything in a large character vector
   unlist %>>%
   # create a table of word count
   table %>>%
   # sort the table descending
-  list.sort(desc(.)) %>>%
+  sort(decreasing = TRUE) %>>%
   # take out the first 100 elements
-  list.take(100) %>>%
+  head(100) %>>%
   # print out the results
   print
 ```
