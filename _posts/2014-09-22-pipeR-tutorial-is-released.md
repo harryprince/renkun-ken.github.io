@@ -2,7 +2,7 @@
 layout: post
 title: pipeR tutorial is released
 categories: blog
-tags: [ pipeR, tutorial ]
+tags: [ r, pipeR, tutorial ]
 highlight: [ r ]
 ---
 
