@@ -1,8 +1,8 @@
 {% if site.theme.highlightjs %}
-<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.2/styles/{{ site.theme.highlightjs }}.min.css">
-<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.2/highlight.min.js"></script>
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.3/styles/{{ site.theme.highlightjs }}.min.css">
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.3/highlight.min.js"></script>
 {% for lang in page.highlight %}
-<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.2/languages/{{ lang }}.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.3/languages/{{ lang }}.min.js"></script>
 {% endfor %}
 <script>
 hljs.configure({languages: []})
