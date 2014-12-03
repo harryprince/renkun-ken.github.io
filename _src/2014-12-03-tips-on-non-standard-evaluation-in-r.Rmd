@@ -48,7 +48,7 @@ Now we can see the expression is modified. This feature, as stated in the offici
 eval(expr)
 ```
 
-The meta-programming feature requires the definition of language objects and a meta-function to evaluate such an language object. In R, a `call` object represents a function call like `sin(x)`, a `name` or `symbol` represents a variable/symbol like `x`, a `numeric`, `character`, etc. represents literal values like `1`, `"a"`, and finally `eval()` evaluates such an language object in a specific context.
+The meta-programming feature requires the definition of language objects and a meta-function to evaluate such a language object. In R, a `call` object represents a function call like `sin(x)`, a `name` or `symbol` represents a variable/symbol like `x`, a `numeric`, `character`, etc. represents literal values like `1`, `"a"`, and finally `eval()` evaluates such an language object in a specific context.
 
 The evaluation context matters when we evaluate an expression containing symbols that are not self-contained. Consider the following example.
 
