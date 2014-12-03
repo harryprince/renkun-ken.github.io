@@ -60,7 +60,7 @@ expr
 cos(0)
 ```
 
-Now we can see the expression is modified. This feature, as stated in the official documentation, is *computing on language*, that is, R not only is able to compute on literal values, but also on language itself. Then what we can do with the modified expression? We can evaluate it using `eval()` as if we do in the console.
+Now we can see the expression is modified. This feature, as stated in the official documentation, is *computing on language*, that is, R not only is able to compute on literal values, but also on language itself. Then what can we do with the modified expression? We can evaluate it using `eval()` as if we do in the console.
 
 
 ```r
