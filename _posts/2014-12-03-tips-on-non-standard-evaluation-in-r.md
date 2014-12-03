@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Tips on Non-standard evaluation in R"
+title: "Tips on non-standard evaluation in R"
 categories: blog
 tags: [ r, nse ]
 highlight: [ r ]
