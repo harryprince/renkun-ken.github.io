@@ -244,7 +244,7 @@ local({
 Error in eval(expr, envir, enclos): object 'p' not found
 ```
 
-In this case, `p` is not found because `c(1,.,p)` is not evaluated in the calling environment but the function environemnt whose parent is the enviornment where the function is defined (i.e. global environment). We need to modify `slice()` to always evaluate the expression in the environment where it is created.
+In this case, `p` is not found because `c(1,.,p)` is not evaluated in the calling environment but the function environment whose parent is the environment where the function is defined (i.e. global environment). We need to modify `slice()` to always evaluate the expression in the environment where it is created.
 
 
 ```r
@@ -326,7 +326,7 @@ mtcars %>%
 Error: Results are not data frames at positions: 1, 2
 ```
 
-In this case `do()` works with `.` representing each group data frame. User might want to arrange each group by `mpg` in descending order and take the top 3 records and finally get a combined data frame. However, `.` encounters an interpretation clash: `do()` gives `.` a spcial meaning but `%>%` understands `.` differently and creates a functional sequence which is not expected by `do()`.
+In this case `do()` works with `.` representing each group data frame. User might want to arrange each group by `mpg` in descending order and take the top 3 records and finally get a combined data frame. However, `.` encounters an interpretation clash: `do()` gives `.` a special meaning but `%>%` understands `.` differently and creates a functional sequence which is not expected by `do()`.
 
 
 ```r
