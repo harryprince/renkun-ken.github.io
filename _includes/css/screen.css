@@ -83,16 +83,16 @@ ul.posts {
 }
 
 ul.posts li {
-  line-height: 22px;
-  font-size: 16px;
+  line-height: 1.25em;
+  font-size: 1.20em;
   margin-bottom: 0px;
 }
 
 ul.posts span {
   font-family: 'Lucida Console', 'Andale Mono', monospace;
   color: #aaa;
-  padding-right: 5px;
-  font-size:14px;
+  padding-right: 8px;
+  font-size: 0.75em;
 }
 
 .meta {
