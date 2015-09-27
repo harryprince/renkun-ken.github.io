@@ -136,7 +136,7 @@ nav hr {
 }
 
 #post code {
-  font-size: 85%;
+  font-size: 100%;
 }
 
 #post pre code {
@@ -230,12 +230,12 @@ i.fa-hn {
 
 .disclaimer p {
   margin-top: 5px;
-  font-size: 11px;
+  font-size: 95%;
   text-align: center;
 }
 
 .footnotes {
-  font-size: 14px;
+  font-size: 100%;
   font-style: italic;
 }
 
