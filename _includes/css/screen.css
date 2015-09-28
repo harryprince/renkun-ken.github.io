@@ -129,10 +129,11 @@ nav hr {
 }
 
 #post pre {
-  border: 1px solid #ddd;
-  background-color: #eef;
-  padding: 0 .4em;
+  border: 1px solid #efefef;
+  background-color: #f1f1f1;
+  padding: 0 0.4em;
   margin-bottom: 20px !important;
+  border-radius: 4px;
 }
 
 #post ul,
