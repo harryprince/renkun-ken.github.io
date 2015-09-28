@@ -123,6 +123,11 @@ nav hr {
   font-size: 13px;
 }
 
+#post {
+  font-size: 1.20em;
+  line-height: 1.50em;
+}
+
 #post pre {
   border: 1px solid #ddd;
   background-color: #eef;
@@ -135,8 +140,8 @@ nav hr {
   margin-left: 1.35em;
 }
 
-#post code {
-  font-size: 100%;
+#post li {
+  margin-bottom: 0.5em; 
 }
 
 #post pre code {
